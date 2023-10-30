@@ -1,60 +1,66 @@
 @import '../../styles/variaveis';
 
-
-.benefits__gradient{
-    background: rgb(228,1,1);
-    background: linear-gradient(200deg, rgba(228,1,1,1) 0%, rgba(255,255,255,1) 100%);
-}
-
-.benefits__top{
-    background-color: $primaryRed;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 25px;
-    gap: 15px;
-    h1{
-        text-align: center;
-        color: $secondaryWhite;
-        font-size: $subText;
-        font-weight: 700;
-        line-height: normal;
-        letter-spacing: 3.57px;
-        padding: 24px;
-    }
-    p{
-        color: $primaryWhite;
-        text-align: center;
-        font-size: $paragraphSize;
-        font-weight: 400;
-        padding: 0 20px;
-    }
-    &__content{
-        height: auto;
+.benefits {
+    &__top {
+        background-color: $primaryRed;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        text-align: center;
-        color: $primaryWhite;
-        font-size: $paragraphSize;
-        font-weight: 400;
-        padding: 0 20px;
-    }
-}
+        gap: 15px;
 
-.benefits__bottom{
-    display: flex;
-    flex-direction: column;
-    gap: 88px;
-    margin-bottom: 32px;
-    &__content{
+        h1 {
+            text-align: center;
+            color: $secondaryWhite;
+            font-size: $subText;
+            font-weight: 700;
+            line-height: normal;
+            letter-spacing: 3.57px;
+            padding: 24px;
+        }
+
+        p {
+            color: $primaryWhite;
+            text-align: center;
+            font-size: $paragraphSize;
+            font-weight: 400;
+            padding: 0 20px;
+        }
+
+        &__content {
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            color: $primaryWhite;
+            font-size: $paragraphSize;
+            font-weight: 400;
+            padding: 0 20px;
+        }
+    }
+
+    &__bg__transition {
+        background-image: url(../../assets/imgs/background_transition_home.PNG);
+        height: 150px;
+        width: 100%;
+        background-repeat: no-repeat;
+    }
+
+    &__bottom {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        color: $primaryBlack;
-        font-size: $paragraphSize;
-        font-weight: 500;
-        line-height: normal;
-        height: 130px;
-        justify-content: space-between;
+        gap: 88px;
+        margin-bottom: 32px;
+
+        &__content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: $primaryBlack;
+            font-size: $paragraphSize;
+            font-weight: 500;
+            line-height: normal;
+            height: 130px;
+            justify-content: space-between;
+        }
     }
 }

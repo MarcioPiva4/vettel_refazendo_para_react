@@ -82,7 +82,7 @@ export default function Benefits(){
                 {listBenefitsPrimary.map(e => <div className={styles.benefits__top__content}>{e}</div>)}
             </div>
 
-            <div className={styles.benefits__gradient}></div>
+            <div className={styles.benefits__bg__transition}></div>
 
             <div className={styles.benefits__bottom}>
                 {listBenefitsSecondary.map(e => <div className={styles.benefits__bottom__content}>{e}</div>)}

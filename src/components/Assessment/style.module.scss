@@ -1,0 +1,23 @@
+@import '../../styles/variaveis';
+
+.assesssment__content{
+    padding: 32px 16px;
+    h1{
+        color: $terciaryBlack;
+        text-align: center;
+        font-size: $subText;
+        font-weight: 500;
+        line-height: normal;
+        position: relative;
+        &::before{
+            content: '';
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            margin: 0 auto;
+            background-color: $primaryBlack;
+            bottom: -10%;
+            left: 0;
+        }
+    }
+}
