@@ -3,8 +3,11 @@
 //Colors
 $primaryBlack: #000;
 $secondaryBlack:#333;
+$terciaryBlack: #282D35;
 
 $primaryWhite: #fff;
+$secondaryWhite: #F9F9F9;
+$terciaryWhite: #F8F8F8;
 
 $primaryOrange: #F44D00;
 $secondaryOrange: #FF6B00;
@@ -22,12 +25,22 @@ $terciaryGray: #848484;
 
 
 //Font sizes
+$logoTitleSizeMobile: 36px;
+$cartTitleSize: 40px;
+
 $hyperTitleSize: 64px;
 $titleSize: 48px;
+$subText: 32px;
 $subTitleSize: 24px;
 $paragraphSize: 16px;
+$paragraphSmallSize: 12px;
 
 
 //Font Familys
 $fontFamilySecondary: 'Quicksand', sans-serif;
-$fontFamilyTerciary: Arial, Helvetica, sans-serif;;
+$fontFamilyTerciary: Arial, Helvetica, sans-serif;
+
+
+//transição padrão
+$transitionDefault: 0.5s all;
+$transitionButton: 0.2s all;

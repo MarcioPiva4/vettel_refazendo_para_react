@@ -1,0 +1,144 @@
+@import '../../styles/variaveis';
+
+.cart{
+    border-radius: 10px;
+    box-shadow: 10px 10px 25px 0px rgba(0, 0, 0, 0.25);
+    background-color: $secondaryWhite;
+    margin-bottom: 40px;
+    &__title{
+        text-align: center;
+        padding: 24px 10px;
+        h1{
+            color: $primaryWhite;
+            font-size: $cartTitleSize;
+            font-weight: 700;
+            line-height: normal;
+            text-transform: uppercase;
+        }
+    }
+
+    &__list_benefits{
+
+        padding-top: 32px;
+        ul{
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            li{
+                display: flex;
+                gap: 16px;
+                align-items: center;
+                padding: 8px 24px;
+                p{
+                    color: $primaryBlack;
+                    text-align: center;
+                    font-size: $paragraphSize;
+                    font-weight: 600;
+                    line-height: normal;
+                }
+            }
+        }
+    }
+
+    &__prices{
+        padding: 56px 0 32px 0;
+
+        &_content_price{
+            padding-left: 10px;
+            display: flex;
+            gap: 32px;
+            div{
+                span{
+                    color: $primaryBlack;
+                    text-align: center;
+                    font-size: $paragraphSize;
+                    font-weight: 600;
+                    line-height: normal;
+                    margin-bottom: 4px;
+                }
+                p{
+                    color: rgba(0, 0, 0, 0.50);
+                    text-align: center;
+                    font-size: $paragraphSmallSize;
+                    font-weight: 600;
+                    line-height: normal;
+                }
+                &:nth-child(2){
+                    p{
+                        display: flex;
+                        span{
+                            align-self: flex-start;
+                            margin-right: 5px;
+                            font-size: $subTitleSize;
+                            font-weight: 600;
+                            line-height: normal;
+                        }
+                        b{
+                            align-self: flex-end;
+                            display: flex;
+                            span{
+                                &:nth-child(1){
+                                    font-size: $titleSize;
+                                }
+
+                                &:nth-child(2){
+                                    font-size: $paragraphSmallSize;
+                                    align-self: center;
+                                    margin-top: 30px
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &_yearly{
+            padding-left: 10px;
+            margin: 8px 0 38px 0;
+            position: relative;
+            span{
+                color: rgba(0, 0, 0, 0.40);
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+            }
+            &::before{
+                content: '';
+                position: absolute;
+                height: 3px;
+                width: 95%;
+                background-color: rgba(0, 0, 0, 0.20);
+                top: -8px;
+            }
+        }
+
+        &_button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            button{
+                color: $primaryWhite;
+                display: flex;
+                padding: 16px 48px;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50px;
+                background-color: $primaryBlack;
+                text-align: center;
+                font-size: $subText;
+                font-weight: 500;
+                line-height: normal;
+                transition: $transitionButton;
+                border: 3px solid $primaryBlack;
+                cursor: pointer;
+                &:hover{
+                    background-color: transparent;
+                    color: $primaryBlack;
+                }
+            }
+        }
+    }
+}
