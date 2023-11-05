@@ -14,6 +14,7 @@ $secondaryOrange: #FF6B00;
 
 $primaryBlue: #0192E4;
 $secondaryBlueHover: #1BB8EA;
+$terciaryBlue: #0F00BE;
 
 $primaryRed:#E40101;
 $secondaryRed: #CD0000;
@@ -32,7 +33,10 @@ $hyperTitleSize: 64px;
 $titleSize: 48px;
 $subText: 32px;
 $subTitleSize: 24px;
+$paragraphSizeSecondary: 20px;
 $paragraphSize: 16px;
+$paragraphSizeTerciary: 18px;
+
 $paragraphSmallSize: 12px;
 
 
@@ -41,6 +45,6 @@ $fontFamilySecondary: 'Quicksand', sans-serif;
 $fontFamilyTerciary: Arial, Helvetica, sans-serif;
 
 
-//transição padrão
+//transicoes padrão
 $transitionDefault: 0.5s all;
 $transitionButton: 0.2s all;

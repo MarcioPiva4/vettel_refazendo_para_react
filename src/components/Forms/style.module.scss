@@ -1,0 +1,56 @@
+@import "../../styles/variaveis";
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    button{
+        height: 50px;
+        width: 65%;
+        margin: 0 auto;
+        background-color: #E40101;
+        border: none;
+        border-radius: 50px;
+        color: $secondaryWhite;
+        text-align: center;
+        font-size: $paragraphSizeSecondary;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+        cursor: pointer;
+
+    }
+
+    &__content{
+        display: flex;
+        flex-direction: column;
+
+        label{
+            color: $terciaryGray;
+            font-size: $paragraphSize;
+            font-weight: 600;
+            line-height: normal;
+
+            &.focusedLabel{
+                color: $secondaryBlueHover;
+            }
+        }
+
+        input{
+            color: $secondaryBlack;
+            font-family: $fontFamilySecondary;
+            font-size: $paragraphSize;
+            font-weight: 400;
+            line-height: normal;
+            padding: 8px 0;
+            border: none;
+            border-bottom: 3px solid $primaryGray;
+            outline: none;
+
+            &:focus{
+                border-color: $secondaryBlueHover;
+            }
+        }
+    }
+}

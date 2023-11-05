@@ -1,7 +1,10 @@
+import LoginPage from "components/LoginPage";
+
 export default function Login(){
+
     return(
-        <>
-            <h1>Plans</h1>
-        </>
+        <main>
+            <LoginPage></LoginPage>
+        </main>
     )
 }
