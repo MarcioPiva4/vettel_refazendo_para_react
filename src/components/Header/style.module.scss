@@ -14,9 +14,12 @@
     h1{
         font-size: $logoTitleSizeMobile;
         text-transform: uppercase;
-        color: $primaryWhite;
         letter-spacing: 5px;
         order: 2;
+        a{
+            text-decoration: none;
+            color: $primaryWhite;
+        }
     }
     .icon__hamburguer__open,.icon__hamburguer__close {
         order: 1;
@@ -77,6 +80,10 @@
                     letter-spacing: 2.28px;
                     text-transform: uppercase;
                     cursor: pointer;
+                    a{
+                        color: $primaryRed;
+                        text-decoration: none;
+                    }
                 }
             }
         }

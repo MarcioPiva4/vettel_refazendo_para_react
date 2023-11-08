@@ -4,27 +4,7 @@
     &__container{
         width: 100%;
         padding: 95px 32px 0 32px;
-        &__top{
-            margin-bottom: 64px;
-            h1{
-                color: $secondaryRed;
-                text-align: center;
-                font-size: $subText;
-                font-weight: 700;
-                line-height: normal;
-                text-transform: uppercase;
-                margin-bottom: 10px;
-            }
-    
-            h3{
-                color: $secondaryGray;
-                font-size: $paragraphSizeSecondary;
-                font-weight: 600;
-                text-align: center;
-                line-height: normal;
-            }
-        }
-        &__bottom{
+        &__main{
             margin-bottom: 120px;
             margin-top: 20px;
 

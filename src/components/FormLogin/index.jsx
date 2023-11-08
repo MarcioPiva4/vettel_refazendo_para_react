@@ -1,4 +1,3 @@
-import Forms from "components/Forms";
 import styles from "./style.module.scss";
 
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,8 +9,9 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import LoadingOverlay from "components/LoadingOverlay";
 import { useState } from "react";
 import { app } from "services/firebaseConfig";
+import FormModelLogin from "components/FormModelRegister";
 
-export default function LoginPage() {
+export default function FormLogin() {
     const navigate = useNavigate();
 
     const [overlay,setOverlay] = useState(false)
@@ -41,22 +41,18 @@ export default function LoginPage() {
   return (
     <section className={styles.login__container}>
       {overlay ? <LoadingOverlay></LoadingOverlay> : ''}
-      <div className={styles.login__container__top}>
-        <h1>Já usa nossos serviços?</h1>
-        <h3>Faça seu login!</h3>
-      </div>
-      <Forms labels={labels} types={typesInputs} onSubmit={handleSubmit}>
+      <FormModelLogin title="Já usa nossos serviços?" subtitle="Faça seu login!" labels={labels} types={typesInputs} onSubmit={handleSubmit}>
         Entrar
-      </Forms>
+      </FormModelLogin>
 
-      <div className={styles.login__container__bottom}>
+      <div className={styles.login__container__main}>
         <p>
-          Ainda não tem acesso? <Link to={'/cadastro'}><span>cadastre-se</span></Link>
+          Ainda não tem acesso? <Link to={'/register'}><span>cadastre-se</span></Link>
         </p>
 
         <h3>Logar com</h3>
 
-        <div className={styles.login__container__bottom__icons}>
+        <div className={styles.login__container__main__icons}>
           <div>
             <figure>
               <img
