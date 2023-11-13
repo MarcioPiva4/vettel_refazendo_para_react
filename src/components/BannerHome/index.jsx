@@ -9,8 +9,7 @@ export default function BannerHome(){
           <span>
             Viage com <b>Segurança</b>
           </span>
-          <button>
-            <Scrolling
+          <Scrolling
               activeClass="active"
               to="plans"
               spy={true}
@@ -18,9 +17,10 @@ export default function BannerHome(){
               offset={50}
               duration={500}
             >
+          <button>
               CONHEÇA OS PLANOS
-            </Scrolling>
           </button>
+          </Scrolling>
         </section>
       </>
     );

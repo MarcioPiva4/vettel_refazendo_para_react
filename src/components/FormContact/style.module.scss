@@ -60,5 +60,13 @@
                 outline: none;
             }
         }
+        .container__dashboard{
+            flex-direction: column;
+            gap: 24px;
+            button{
+                border-radius: 20px;
+                flex: none;
+            }
+        }
     }
 }

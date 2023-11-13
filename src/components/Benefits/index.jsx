@@ -76,9 +76,9 @@ const listBenefitsSecondary = [
 
 export default function Benefits(){
     return(
-        <section>
+        <section className={styles.benefits__container}>
             <div className={styles.benefits__top}>
-                <h1>VETTEL</h1>
+                <h1 id="aboutUs">VETTEL</h1>
                 <p>Na Vettel , somos apaixonados por segurança e direção emocionante.<br></br>
                 Oferecemos soluções inovadoras para tornar sua experiência ao volante ainda melhor. </p>
                 {listBenefitsPrimary.map((e,i) => <div className={styles.benefits__top__content} key={i}>{e}</div>)}
@@ -89,7 +89,7 @@ export default function Benefits(){
                 <div></div>
             </div>
 
-            <div className={styles.benefits__bottom}>
+            <div className={styles.benefits__bottom} id='benefits'>
                 {listBenefitsSecondary.map((e,i) => <div className={styles.benefits__bottom__content} key={i}>{e}</div>)}
             </div>
         </section>

@@ -4,7 +4,7 @@ export default function CardPrice({ planTitle, bgTitle, listBenefits, pricePromo
     return(
         <div className={styles.card}>
             <div className={styles.card__title} style={{"backgroundColor": bgTitle }}>
-            <h1>{planTitle}</h1> 
+            <h1 id="plans">{planTitle}</h1> 
             </div>
             <div className={styles.card__list_benefits}>
                 <ul>

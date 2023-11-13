@@ -22,9 +22,12 @@ export default function FormLogin() {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, inputValues[0], inputValues[1]);
             const user = userCredential.user;
-            navigate('/dashboard');
+            setTimeout(() => {
+                setOverlay(false);
+                navigate('/dashboard');
+            }, 4700); 
         } catch (error) {
-            const errorCode = error.code;
+            //const errorCode = error.code;
         } finally {
             setTimeout(() => {
                 setOverlay(false);

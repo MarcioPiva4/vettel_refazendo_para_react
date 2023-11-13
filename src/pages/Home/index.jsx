@@ -2,7 +2,7 @@ import React from 'react';
 
 import CardPrice from "components/CardPrice";
 import BannerHome from 'components/BannerHome';
-import FormularioHome from 'components/FormHome';
+import FormularioContact from 'components/FormContact';
 import Benefits from 'components/Benefits';
 import Assessment from 'components/Assessment';
 
@@ -90,7 +90,7 @@ export default function Home() {
 
         <Assessment></Assessment>
 
-        <FormularioHome></FormularioHome>
+        <FormularioContact></FormularioContact>
       </main>
       <Footer></Footer>
       </>

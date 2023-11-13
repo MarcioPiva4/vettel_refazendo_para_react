@@ -25,7 +25,7 @@ export default function FormModelRegister({ title, subtitle, labels, types, chil
   };
 
   return (
-    <section>
+    <section className={styles.form__container}>
       <h1 style={{'textShadow': shadow}}>{title}</h1>
       <h3>{subtitle}</h3>
       <form className={styles.form} onSubmit={handleSubmit}>

@@ -1,0 +1,45 @@
+.carcondition{
+    &__container{
+        padding: 32px;
+        box-shadow: 8px 8px 15px 5px rgba(0, 0, 0, 0.25);
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 32px;
+        h1{
+            color: #000;
+            font-size: 32px;
+            font-weight: 500;
+            line-height: normal;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        div{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #E40101;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            div{
+                width: 165px;
+                height: 165px;
+                border-radius: 50%;
+                background-color: #fff;
+                h2{
+                    color: #800000;
+                    text-align: center;
+                    font-family: Quicksand;
+                    font-size: 38px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: normal;
+                }
+            }
+        }
+    }
+}
