@@ -183,7 +183,7 @@ export default function Header({ bg, isDashboard}) {
                 to="plans"
                 spy={true}
                 smooth={true}
-                offset={50}
+                offset={-120}
                 duration={500}
               >
                 <li onClick={closeMenu}>planos</li>
@@ -194,7 +194,7 @@ export default function Header({ bg, isDashboard}) {
                 to="aboutUs"
                 spy={true}
                 smooth={true}
-                offset={50}
+                offset={-70}
                 duration={500}
               >
                 <li onClick={closeMenu}>sobre nos</li>
@@ -205,7 +205,7 @@ export default function Header({ bg, isDashboard}) {
                 to="benefits"
                 spy={true}
                 smooth={true}
-                offset={50}
+                offset={-200}
                 duration={500}
               >
                 <li onClick={closeMenu}>beneficios</li>
@@ -216,7 +216,7 @@ export default function Header({ bg, isDashboard}) {
                 to="assessment"
                 spy={true}
                 smooth={true}
-                offset={50}
+                offset={-100}
                 duration={500}
               >
                 <li onClick={closeMenu}>avaliações</li>
@@ -227,7 +227,7 @@ export default function Header({ bg, isDashboard}) {
                 to="formHome"
                 spy={true}
                 smooth={true}
-                offset={50}
+                offset={-100}
                 duration={500}
               >
                 <li onClick={closeMenu}>contato</li>

@@ -14,7 +14,7 @@ export default function BannerHome(){
               to="plans"
               spy={true}
               smooth={true}
-              offset={50}
+              offset={-120}
               duration={500}
             >
           <button>

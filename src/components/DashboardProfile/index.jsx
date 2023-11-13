@@ -24,7 +24,50 @@ export default function DashboardProfile(){
         <Header bg='#282D35' isDashboard></Header>
             <DashboardTop title='Meu perfil'></DashboardTop>
 
-            <h1 onClick={exitUser}>SAIR</h1>
+            <div>
+                <ul>
+                    <li> 
+                        <div>
+                            <img></img> 
+                        </div>
+                        <h1>Nome</h1>
+                    </li>
+                    <li>
+                        <label>Nome Completo</label>
+                        <input type="text"></input>
+                    </li>
+                    <li>
+                        <label>Email</label>
+                        <input type="text"></input>
+                    </li>
+                    <li>
+                        <label>Senha</label>
+                        <input type="text"></input>
+                    </li>
+                    <li>
+                        <label>Nome do cartão</label>
+                        <input type="text"></input>
+                    </li>
+                    <li>
+                        <label>Número do cartão</label>
+                        <input type="text"></input>
+                    </li>
+
+                    <li>
+                        <label>Data de validade </label>
+                        <input type="text"></input>
+                    </li>
+
+                    <li>
+                        <label>Código de segurança (CVV) </label>
+                        <input type="text"></input>
+                    </li>
+
+                    <li>
+                        <h1 onClick={exitUser}>SAIR</h1>
+                    </li>
+                </ul>
+            </div>
         <Footer></Footer>
         </>
     )
