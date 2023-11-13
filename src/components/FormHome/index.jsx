@@ -1,6 +1,7 @@
 import styles from './style.module.scss'
 
 export default function FormHome(){
+
     return(
         <section className={styles.form}>
             <h1>Contato</h1>

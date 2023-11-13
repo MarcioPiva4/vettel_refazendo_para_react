@@ -1,9 +1,14 @@
 import styles from './style.module.scss'
 
-export default function LoadingOverlay(){
+
+import vettelLoading from '../../assets/icons/vettel_loading.gif'
+import vettelLoadingReload from '../../assets/icons/vettel_loading.gif'
+
+export default function LoadingOverlay({resetGif}){
+
     return(
         <div className={styles.overlay}>
-            <span className={styles.overlay__loader}></span>
+            <img src={resetGif ? vettelLoading : vettelLoadingReload} alt='gif da logo da vettel' ></img>
         </div>
     )
 }

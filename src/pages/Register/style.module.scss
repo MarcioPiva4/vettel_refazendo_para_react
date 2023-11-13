@@ -4,6 +4,14 @@
     &__container{
         padding: 30px 32px 50px 32px;
 
+        .paragraph{
+            color: $terciaryGray;
+            font-size: $paragraphSize;
+            font-weight: 600;
+            line-height: normal;
+            margin-top: 64px;
+        }
+
         input[type=number]::-webkit-inner-spin-button { 
             -webkit-appearance: none;
             
@@ -15,6 +23,17 @@
 
         &__screen2__content{
             display: flex;
+            gap: 8px;
+            p{
+                color: $terciaryGray;
+                font-size: $paragraphSizeSecondary;;
+                font-weight: 600;
+                line-height: normal;
+            }
+
+            input{
+                width: 15px;
+            }
         }
     }
 }

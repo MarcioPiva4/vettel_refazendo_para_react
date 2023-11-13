@@ -9,14 +9,15 @@ export default function Screen3(){
     const typesInputs = ["number", "text", "text", "number"];
 
     const navigate = useNavigate()
-    const nextPage = () => {
-        navigate('/register/screen2')
+    const nextPage = (inputs) => {
+        navigate('/register/screen4')
+        localStorage.setItem('inputValuesScreen3', JSON.stringify(inputs));
     }
 
     return(
         <section className={styles.register__container}>
             <ArrowBack></ArrowBack>
-            <FormModelRegister title="Estamos quase lá!" labels={labels} types={typesInputs}>
+            <FormModelRegister title="Estamos quase lá!" labels={labels} types={typesInputs} onSubmit={nextPage}>
                 CONCLUIR PAGAMENTO
             </FormModelRegister>
         </section>

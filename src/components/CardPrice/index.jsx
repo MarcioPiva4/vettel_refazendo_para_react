@@ -4,7 +4,7 @@ export default function CardPrice({ planTitle, bgTitle, listBenefits, pricePromo
     return(
         <div className={styles.card}>
             <div className={styles.card__title} style={{"backgroundColor": bgTitle }}>
-                <h1>{planTitle}</h1>
+            <h1>{planTitle}</h1> 
             </div>
             <div className={styles.card__list_benefits}>
                 <ul>
@@ -29,7 +29,7 @@ export default function CardPrice({ planTitle, bgTitle, listBenefits, pricePromo
                 <div className={styles.card__prices_yearly}>
                     <span>
                         Pagamento anual
-                        <svg width="4" height="5" viewBox="0 0 4 5" fill="none" xmlns="http://www.w3.org/2000/svg"><rect y="0.289062" width="4" height="4" rx="2" fill="black" fill-opacity="0.4"/></svg>
+                        <svg width="4" height="5" viewBox="0 0 4 5" fill="none" xmlns="http://www.w3.org/2000/svg"><rect y="0.289062" width="4" height="4" rx="2" fill="black"  fillOpacity="0.4"/></svg>
                         Total R${priceYearly}
                     </span>
                 </div>

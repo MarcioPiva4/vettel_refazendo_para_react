@@ -4,10 +4,12 @@ import ArrowBack from "components/ArrowBack";
 
 import FormModelRegister from 'components/FormModelRegister';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PaymentMethods from 'components/PaymentMethods';
 
 export default function Screen2(){
+
+    const navigate = useNavigate()
 
     const labelsAutomovel = ["Nome do automovel", "Placa"];
     const typesInputsAutomovel = ["text","text"];
@@ -15,10 +17,21 @@ export default function Screen2(){
     const labelsCaminhao = ["Número de risco","Número ONU", "Nome do automovel", "Placa"]
     const typesInputsCaminhao = ["number","number","text","text"]
 
-    const navigate = useNavigate()
-    const nextPage = () => {
+
+    const [valueRadio, setValueRadio] = useState('');
+    
+    const nextPage = (inputs) => {
         navigate('/register/screen3')
+        localStorage.setItem('inputValuesScreen2', JSON.stringify(inputs));
+        console.log(inputs, valueRadio)
     }
+    useEffect(() => {
+        const storedValues = localStorage.getItem('inputValues');
+        if (storedValues) {
+          const inputs = JSON.parse(storedValues);
+          console.log(inputs);
+        }
+      }, []);
 
     const [formSecondary,setFormSecondary] = useState(false)
 
@@ -26,19 +39,23 @@ export default function Screen2(){
         if(e === 'on'){
             setFormSecondary(true)
         }
+        setValueRadio('Caminhao')
     }
 
     const radioValueAuto = (e) => {
         if(e === 'on'){
             setFormSecondary(false)
         }
+        setValueRadio('Automovel')
     }
 
     return(
         <section className={styles.register__container}>
             <ArrowBack></ArrowBack>
 
-            <p>Tipo de veiculo</p>
+            <h1>Cadastre o automovel</h1>
+
+            <p className={styles.paragraph}>Tipo de veiculo</p>
             <div className={styles.register__container__screen2__content}>
                 <input type='radio' name='auto' onChange={e => radioValueAuto(e.target.value)}></input>
                 <p>Carro</p>

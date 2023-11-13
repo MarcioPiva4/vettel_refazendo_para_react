@@ -1,0 +1,25 @@
+@import '../../styles/variaveis';
+
+.dashboard__top{
+    padding: 32px;
+    margin-top: 12vh;
+    box-shadow: 8px 8px 15px 5px rgba(0, 0, 0, 0.25);
+    margin-bottom: 5vh;
+    h1,h2,h3{
+        color:  $terciaryBlack !important;
+        font-weight: 500;
+        font-size: $subText;
+        line-height: normal;
+        text-transform: initial;
+    }
+
+    .title__bold{
+        font-weight: 600;
+        text-align: start;
+    }
+
+    h3{
+        font-size: $subTitleSize;
+        text-align: start;
+    }
+}

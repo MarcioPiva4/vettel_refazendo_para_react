@@ -39,10 +39,20 @@
     }
 
     &__bg__transition {
-        background-image: url(../../assets/imgs/background_transition_home.PNG);
         height: 150px;
         width: 100%;
-        background-repeat: no-repeat;
+        overflow: hidden;
+        position: relative;
+        background-color: $primaryRed;
+        div{
+            height: 1000px;
+            background-color: $primaryWhite;
+            position: absolute;
+            width: 100%;
+            left: 50%;
+            top: -204%;
+            transform: rotate(69deg);
+        }
     }
 
     &__bottom {
