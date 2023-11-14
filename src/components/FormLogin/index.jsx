@@ -16,22 +16,20 @@ export default function FormLogin() {
     const [overlay, setOverlay] = useState(false);
     const handleSubmit = async (inputValues) => {
         setOverlay(true);
-        
         const auth = getAuth();
-
         try {
             const userCredential = await signInWithEmailAndPassword(auth, inputValues[0], inputValues[1]);
             const user = userCredential.user;
             setTimeout(() => {
                 setOverlay(false);
                 navigate('/dashboard');
-            }, 4700); 
+            }, 3700); 
         } catch (error) {
             //const errorCode = error.code;
         } finally {
             setTimeout(() => {
                 setOverlay(false);
-            }, 4700); 
+            }, 3700); 
         }
     };
 

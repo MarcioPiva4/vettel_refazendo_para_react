@@ -23,13 +23,13 @@ export default function Screen2(){
     const nextPage = (inputs) => {
         navigate('/register/screen3')
         localStorage.setItem('inputValuesScreen2', JSON.stringify(inputs));
-        console.log(inputs, valueRadio)
+        //console.log(inputs, valueRadio)
     }
     useEffect(() => {
         const storedValues = localStorage.getItem('inputValues');
         if (storedValues) {
           const inputs = JSON.parse(storedValues);
-          console.log(inputs);
+          //console.log(inputs);
         }
       }, []);
 

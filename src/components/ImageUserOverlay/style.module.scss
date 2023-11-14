@@ -1,0 +1,27 @@
+.overlay{
+    &__user{
+        width: 100%;
+        position: fixed;
+        height: 100vh;
+        background-color: rgba(191, 191, 191, 0.818);
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            div{
+                display: flex;
+                gap: 20px; 
+
+                button{
+                    width: 100%;
+                    height: 25px;
+                }
+            }
+        }
+    }
+}
