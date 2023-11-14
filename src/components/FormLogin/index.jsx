@@ -23,13 +23,13 @@ export default function FormLogin() {
             setTimeout(() => {
                 setOverlay(false);
                 navigate('/dashboard');
-            }, 3700); 
+            }, 3500); 
         } catch (error) {
             //const errorCode = error.code;
         } finally {
             setTimeout(() => {
                 setOverlay(false);
-            }, 3700); 
+            }, 3500); 
         }
     };
 

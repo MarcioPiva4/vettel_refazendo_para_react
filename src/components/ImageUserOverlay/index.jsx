@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 export default function ImageUserOverlay({ closeOverlay }) {
     const [img, setImg] = useState('');
+    const [overlay, setOverlay] = useState('');
 
     const submitData = async (e) => {
         e.preventDefault();
@@ -20,7 +21,12 @@ export default function ImageUserOverlay({ closeOverlay }) {
         }
     };
 
-    const teste = async () => {
+    const closeOverlayClick = () => {
+        setOverlay(closeOverlay);
+    }
+
+
+    const savePhotoUser = async () => {
         var reader = new FileReader();
 
         reader.onload = async function (e) {
@@ -36,6 +42,7 @@ export default function ImageUserOverlay({ closeOverlay }) {
             try {
                 await setDoc(userDocRef, userData, { merge: true });
                 console.log('URL da imagem salva no banco de dados.');
+                closeOverlayClick();
             } catch (error) {
                 console.error('Erro ao salvar a URL no banco de dados:', error);
             }
@@ -62,22 +69,22 @@ export default function ImageUserOverlay({ closeOverlay }) {
                     if (userDocSnapshot.exists()) {
                         const userData = userDocSnapshot.data();
                         
-                        const photoProfile = userData.fotoPerfil
+                        const photoProfile = userData.fotoperfil
                     }
                 } catch (error) {
                 }
             }
-        });
+    });
 
     return (
         <div className={styles.overlay__user}>
             <form onSubmit={(e) => submitData(e)}>
                 <input type="file" onChange={(e) => handleImg(e)} />
                 <div>
-                    <button type="submit" onClick={teste}>
+                    <button type="submit" onClick={savePhotoUser}>
                         Enviar foto?
                     </button>
-                    <button onClick={closeOverlay}> SAIR </button>
+                    <button onClick={closeOverlayClick}> SAIR </button>
                 </div>
             </form>
         </div>

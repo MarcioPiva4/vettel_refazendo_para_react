@@ -63,14 +63,14 @@ export default function Screen4(){
             setTimeout(() => {
                 setOverlay(false);
                 navigate('/dashboard');
-            }, 3700); 
+            }, 3500); 
 
         } catch (error) {
             console.error(error);
         } finally {
             setTimeout(() => {
                 setOverlay(false);
-            }, 3700); 
+            }, 3500); 
         }
     }
 
