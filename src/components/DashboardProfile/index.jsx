@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import styles from './style.module.scss'
 import DashboardTop from "components/DashboardTop";
 import Footer from "components/Footer";
@@ -6,11 +7,12 @@ import ImageUserOverlay from 'components/ImageUserOverlay';
 
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { app } from 'services/firebaseConfig';
 
 export default function DashboardProfile(){
+    //states do banco
     const [imageProfile, setImageProfile] = useState('')
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
@@ -20,12 +22,37 @@ export default function DashboardProfile(){
     const [expirationDate, setexpirationDate] = useState('')
     const [security,setSecurity] = useState('')
 
+    //states valor do campo onchange
+    const [inputValueName, setInputValueName] = useState(name);
+    useEffect(() => {
+      setInputValueName(name);
+    }, [name]);
 
-    const [inputValue, setInputValue] = useState('');
+    const [inputValueNameCard, setInputValueNameCard] = useState(nameCard);
+    useEffect(() => {
+      setInputValueNameCard(nameCard);
+    }, [nameCard]);
+
+    const [inputValueNumberCard, setInputValueNumberCard] = useState(numberCard);
+    useEffect(() => {
+      setInputValueNumberCard(numberCard);
+    }, [numberCard]);
+
+    const [inputValueExpirationDate, setInputValueExpirationDate] = useState(expirationDate);
+    useEffect(() => {
+      setInputValueExpirationDate(expirationDate);
+    }, [expirationDate]);
+
+    const [inputValueSecurity, setInputValueSecurity] = useState(security);
+    useEffect(() => {
+      setInputValueSecurity(security);
+    }, [security]);
+
+
+    //state overlay
     const [overlayImg, setOverlayImg] = useState(false)
 
-    //console.log(inputValue)
-
+    //state de disable na input
     const [editInputName, setEditInputName] = useState(true)
     const [editInputEmail, setEditInputEmail] = useState(true)
     //const [editInputPassword, setEditInputPassword] = useState(true)
@@ -34,48 +61,71 @@ export default function DashboardProfile(){
     const [editInputExpirationDate, setEditInputExpirationDate] = useState(true)
     const [editInputSecurity, setEditInputSecurity] = useState(true)
 
-    const submitInput = async(campo) => {
+
+    const submitInput = async(campo, funcCloseIcon) => {
       const db = getFirestore(app);
       const auth = getAuth(app);
       const userDocRef = doc(db, 'users', auth.currentUser.uid);
 
 
+      let inputValue = '';
+        switch (campo) {
+          case "nome":
+            inputValue = inputValueName;
+            break;
+          case "nomecartao":
+            inputValue = inputValueNameCard;
+            break;
+          case "numerocartao":
+            inputValue = inputValueNumberCard;
+            break;
+          case "validade":
+            inputValue = inputValueExpirationDate;
+            break;
+          case "codigoseguranca":
+            inputValue = inputValueSecurity;
+            break;
+        }
+        
+        
       const userData = {
         [campo] : inputValue,
       };
 
       try {
-        await setDoc(userDocRef, userData , { merge: true });
+        await setDoc(userDocRef, userData, { merge: true });
         console.log('salvo');
     } catch (error) {
     }
-      editInputNameClick();
+      const closeIcon = funcCloseIcon;
     }
 
+    //funcoes para enviar os campos modificados para o banco
     const submitInputName = () => {
-      submitInput('nome')
+      submitInput('nome',editInputNameClick())
     }
 
     const submitInputNameCard = () => {
-      submitInput('nomecartao')
+      submitInput('nomecartao',editInputNameCardClick())
     }
 
     const submitInputNumberCard = () => {
-      submitInput('numerocartao')
+      submitInput('numerocartao', editInputNumberCardClick())
     }
 
     const submitInputExpirationDate = () => {
-      submitInput('validade')
+      submitInput('validade', editInputExpirationDateClick())
     }
 
     const submitInputSecurity = () => {
-      submitInput('codigoseguranca')
+      submitInput('codigoseguranca', editInputSecurityClick())
     }
 
+
+    //funcoes para alterar state da input
     const editInputNameClick = () => {
       setEditInputName(!editInputName);
     }
-
 
     const editInputEmailClick = () => {
       setEditInputEmail(!editInputEmail);
@@ -107,12 +157,11 @@ export default function DashboardProfile(){
         setOverlayImg(!overlayImg);
     }
 
-    const navigation = useNavigate();
-
     const auth = getAuth();
 
     const navigate = useNavigate();
     const db = getFirestore(); 
+    //funcao que recuperar os dados no banco
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (user) {
                 const userId = user.uid;
@@ -140,9 +189,10 @@ export default function DashboardProfile(){
             }
         });
 
+    //funcao para sair do firebase auth
     const exitUser = () => {
         auth.signOut().then(() => {
-        navigation("/")
+        navigate("/")
         }).catch(() => {
             //window.alert("Erro ao fazer logout tente novamente")
         })
@@ -169,58 +219,58 @@ export default function DashboardProfile(){
             <li>
               <div>
                 <label>Nome Completo</label>
-                <input type="text" defaultValue={name} onChange={(e) => setInputValue(e.target.value)} disabled={editInputName}></input>
+                <input type="text" defaultValue={name} onChange={(e) => setInputValueName(e.target.value)} disabled={editInputName}></input>
               </div>
               <svg style={editInputName ? {display:'block'} : {display:'none'}} onClick={editInputNameClick} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill="black"/></svg>
-              <div style={editInputName ? {display:'none'} : {display:'block'}} onClick={submitInputName}> <h5>ENVIAR</h5></div>
+              <div style={editInputName ? {display:'none'} : {display:'block'}} onClick={submitInputName}> <h5>Salvar</h5></div>
             </li>
             <li>
               <div>
               <label>Email</label>
-              <input type="text" defaultValue={email}  onChange={(e) => setInputValue(e.target.value)}  disabled={editInputEmail}></input>
+              <input type="text" defaultValue={email}    disabled={editInputEmail}></input>
               </div>
               <svg style={editInputEmail ? {display:'block'} : {display:'none'}} onClick={editInputEmailClick} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill="black"/></svg>
-              <div style={editInputEmail ? {display:'none'} : {display:'block'}} onClick={editInputEmailClick}> <h5>ENVIAR</h5></div>
+              <div style={editInputEmail ? {display:'none'} : {display:'block'}} onClick={editInputEmailClick}> <h5>Salvar</h5></div>
             </li>
             <li>
               <div>
               <label>Senha</label>
-              <input type="password" defaultValue={password}  onChange={(e) => setInputValue(e.target.value)}  disabled></input>
+              <input type="password" defaultValue={password}  disabled></input>
               </div>
             </li>
             <li>
-              <div>
+              <div> 
               <label>Nome do cartão</label>
-              <input type="text" defaultValue={nameCard}  onChange={(e) => setInputValue(e.target.value)}  disabled={editInputNameCard}></input>
+              <input type="text" defaultValue={nameCard} onChange={(e) => setInputValueNameCard(e.target.value)}  disabled={editInputNameCard}></input>
               </div>
               <svg style={editInputNameCard ? {display:'block'} : {display:'none'}} onClick={editInputNameCardClick} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill="black"/></svg>
-              <div style={editInputNameCard ? {display:'none'} : {display:'block'}} onClick={submitInputNameCard}> <h5>ENVIAR</h5></div>
+              <div style={editInputNameCard ? {display:'none'} : {display:'block'}} onClick={submitInputNameCard}> <h5>Salvar</h5></div>
             </li>
             <li>
               <div>
               <label>Número do cartão</label>
-              <input type="text" defaultValue={numberCard}  onChange={(e) => setInputValue(e.target.value)}  disabled={editInputNumberCard}></input>
+              <input type="text" defaultValue={numberCard} onChange={(e) => setInputValueNumberCard(e.target.value)}  disabled={editInputNumberCard}></input>
               </div>
               <svg style={editInputNumberCard ? {display:'block'} : {display:'none'}} onClick={editInputNumberCardClick} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill="black"/></svg>
-              <div style={editInputNumberCard ? {display:'none'} : {display:'block'}} onClick={submitInputNumberCard}> <h5>ENVIAR</h5></div>
+              <div style={editInputNumberCard ? {display:'none'} : {display:'block'}} onClick={submitInputNumberCard}> <h5>Salvar</h5></div>
             </li>
 
             <li>
               <div>
               <label>Data de validade </label>
-              <input type="text" defaultValue={expirationDate}  onChange={(e) => setInputValue(e.target.value)}  disabled={editInputExpirationDate}></input>
+              <input type="text" defaultValue={expirationDate} onChange={(e) => setInputValueExpirationDate(e.target.value)} disabled={editInputExpirationDate}></input>
               </div>
               <svg style={editInputExpirationDate ? {display:'block'} : {display:'none'}} onClick={editInputExpirationDateClick} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill="black"/></svg>
-              <div style={editInputExpirationDate ? {display:'none'} : {display:'block'}} onClick={submitInputExpirationDate}> <h5>ENVIAR</h5></div>
+              <div style={editInputExpirationDate ? {display:'none'} : {display:'block'}} onClick={submitInputExpirationDate}> <h5>Salvar</h5></div>
             </li>
 
             <li>
               <div>
               <label>Código de segurança (CVV) </label>
-              <input type="text" defaultValue={security}  onChange={(e) => setInputValue(e.target.value)}  disabled={editInputSecurity}></input>
+              <input type="text" defaultValue={security}  onChange={(e) => setInputValueSecurity(e.target.value)}  disabled={editInputSecurity}></input>
               </div>
               <svg style={editInputSecurity ? {display:'block'} : {display:'none'}} onClick={editInputSecurityClick} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill="black"/></svg>
-              <div style={editInputSecurity ? {display:'none'} : {display:'block'}} onClick={submitInputSecurity}> <h5>ENVIAR</h5></div>
+              <div style={editInputSecurity ? {display:'none'} : {display:'block'}} onClick={submitInputSecurity}> <h5>Salvar</h5></div>
             </li>
 
             <li>
