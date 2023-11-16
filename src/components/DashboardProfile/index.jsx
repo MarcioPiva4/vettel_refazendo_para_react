@@ -6,13 +6,20 @@ import Header from "components/Header";
 import ImageUserOverlay from 'components/ImageUserOverlay';
 import UserIsLogin from 'components/UserIsLogin';
 
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, updateEmail, updatePassword } from 'firebase/auth';
 import { doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { app } from 'services/firebaseConfig';
 
 export default function DashboardProfile(){
+    const auth = getAuth();
+
+    const navigate = useNavigate();
+    const db = getFirestore(); 
+
+    const user = auth.currentUser;
+
     //states do banco
     const [imageProfile, setImageProfile] = useState('')
     const [name,setName] = useState('')
@@ -28,6 +35,16 @@ export default function DashboardProfile(){
     useEffect(() => {
       setInputValueName(name);
     }, [name]);
+
+    const [inputValueEmail, setInputValueEmail] = useState(email);
+    useEffect(() => {
+      setInputValueEmail(email);
+    }, [email]);
+
+    const [inputValuePassword, setInputValuePassword] = useState(password);
+    useEffect(() => {
+      setInputValuePassword(password);
+    }, [password]);
 
     const [inputValueNameCard, setInputValueNameCard] = useState(nameCard);
     useEffect(() => {
@@ -56,7 +73,7 @@ export default function DashboardProfile(){
     //state de disable na input
     const [editInputName, setEditInputName] = useState(true)
     const [editInputEmail, setEditInputEmail] = useState(true)
-    //const [editInputPassword, setEditInputPassword] = useState(true)
+    const [editInputPassword, setEditInputPassword] = useState(true)
     const [editInputNameCard, setEditInputNameCard] = useState(true)
     const [editInputNumberCard, setEditInputNumberCard] = useState(true)
     const [editInputExpirationDate, setEditInputExpirationDate] = useState(true)
@@ -73,6 +90,9 @@ export default function DashboardProfile(){
         switch (campo) {
           case "nome":
             inputValue = inputValueName;
+            break;
+          case "senha":
+            inputValue = inputValuePassword
             break;
           case "nomecartao":
             inputValue = inputValueNameCard;
@@ -106,6 +126,21 @@ export default function DashboardProfile(){
       submitInput('nome',editInputNameClick())
     }
 
+    const submitInputEmail = () => {
+      submitInput('email',editInputEmailClick())
+    }
+
+    console.log(password, inputValuePassword)
+    const submitInputPassword = () => {
+      if(inputValuePassword === password){
+        editInputPasswordClick();
+        window.alert("Não coloque a mesma senha")
+      } else {
+        submitInput('senha',editInputPasswordClick())
+        updatePasswordFunction();
+      }
+    }
+
     const submitInputNameCard = () => {
       submitInput('nomecartao',editInputNameCardClick())
     }
@@ -132,9 +167,9 @@ export default function DashboardProfile(){
       setEditInputEmail(!editInputEmail);
     }
 
-    /*const editInputPasswordClick = () => {
+    const editInputPasswordClick = () => {
       setEditInputPassword(!editInputPassword);
-    }*/
+    }
 
     const editInputNameCardClick = () => {
       setEditInputNameCard(!editInputNameCard);
@@ -153,15 +188,10 @@ export default function DashboardProfile(){
     }
 
 
-
     const openOverlay = () => {
         setOverlayImg(!overlayImg);
     }
 
-    const auth = getAuth();
-
-    const navigate = useNavigate();
-    const db = getFirestore(); 
     //funcao que recuperar os dados no banco
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (user) {
@@ -197,6 +227,19 @@ export default function DashboardProfile(){
         })
     }
 
+    //funcao para alterar email do firebase
+    const updateEmailFunction = () => {
+      updateEmail(user, 'marciopivinajunior@outlook.com').then((response) => {
+        console.log(response)
+      }).catch(error => console.log(error,'adasd'));
+    }
+
+    //funcao para alterar 
+    const updatePasswordFunction = () => {
+      updatePassword(user, inputValuePassword);
+    }
+
+
     return (
       <>
         <UserIsLogin></UserIsLogin>
@@ -226,16 +269,18 @@ export default function DashboardProfile(){
             <li>
               <div>
               <label>Email</label>
-              <input type="text" defaultValue={email}    disabled={editInputEmail}></input>
+              <input type="text" defaultValue={email}  onChange={(e) => setInputValueEmail(e.target.value)}  disabled={editInputEmail}></input>
               </div>
               <svg style={editInputEmail ? {display:'block'} : {display:'none'}} onClick={editInputEmailClick} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill="black"/></svg>
-              <div style={editInputEmail ? {display:'none'} : {display:'block'}} onClick={editInputEmailClick}> <h5>Salvar</h5></div>
+              <div style={editInputEmail ? {display:'none'} : {display:'block'}} onClick={updateEmailFunction}> <h5>Salvar</h5></div>
             </li>
             <li>
               <div>
               <label>Senha</label>
-              <input type="password" defaultValue={password}  disabled></input>
+              <input type={editInputPassword ? 'password' : 'text'} defaultValue={password} onChange={(e) => setInputValuePassword(e.target.value)} disabled={editInputPassword}></input>
               </div>
+              <h5 style={editInputPassword ? {display:'block'} : {display:'none'}} onClick={editInputPasswordClick}>Alterar senha</h5>
+              <h5 style={editInputPassword ? {display:'none'} : {display:'block'}} onClick={submitInputPassword}>Salvar</h5>
             </li>
             <li>
               <div> 

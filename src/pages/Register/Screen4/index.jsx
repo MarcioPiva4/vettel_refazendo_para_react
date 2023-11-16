@@ -48,6 +48,7 @@ export default function Screen4(){
             const userData = {
                 nome: data[0][0],
                 email: data[3][0],
+                senha: data[3][2],
                 cpf: data[0][2],
                 telefone: data[0][3],
                 numerocartao: data[2][0],
