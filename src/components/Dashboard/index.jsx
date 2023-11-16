@@ -9,6 +9,7 @@ import Footer from 'components/Footer';
 import DashboardTop from 'components/DashboardTop';
 import CarCondition from 'components/CarCondition';
 import CardDashboard from 'components/CardDashboard';
+import UserIsLogin from 'components/UserIsLogin';
 
 export default function Dashboard() {
     const [nameUser, setNameUser] = useState('');
@@ -33,8 +34,6 @@ export default function Dashboard() {
                     }
                 } catch (error) {
                 }
-            } else {
-                navigate('/');
             }
         });
 
@@ -43,6 +42,7 @@ export default function Dashboard() {
 
     return (
         <>
+            <UserIsLogin></UserIsLogin>
             <Header bg='#282D35' isDashboard />
             <DashboardTop titleBold='O que você gostaria de fazer?' subtitle={`Olá ${nameUser}`} />
                 <section className={styles.dashboard__container}>

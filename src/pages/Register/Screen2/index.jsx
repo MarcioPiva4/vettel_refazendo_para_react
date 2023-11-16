@@ -21,7 +21,7 @@ export default function Screen2(){
     const [valueRadio, setValueRadio] = useState('');
     
     const nextPage = (inputs) => {
-        navigate('/register/screen3')
+        navigate('/register/tela3')
         localStorage.setItem('inputValuesScreen2', JSON.stringify(inputs));
         //console.log(inputs, valueRadio)
     }

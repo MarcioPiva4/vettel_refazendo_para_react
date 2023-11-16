@@ -23,16 +23,16 @@ export default function App() {
           <Route index path="/" element={ <Home></Home> }/>
           <Route path="/login" element={ <Login></Login> }/>
           <Route path="/register" > 
-            <Route path="screen1" index element={<Screen1></Screen1>}></Route>
-            <Route path="screen2" element={<Screen2></Screen2>}></Route>
-            <Route path="screen3" element={<Screen3></Screen3>}></Route>
-            <Route path="screen4" element={<Screen4></Screen4>}></Route>
+            <Route path="tela1" index element={<Screen1></Screen1>}></Route>
+            <Route path="tela2" element={<Screen2></Screen2>}></Route>
+            <Route path="tela3" element={<Screen3></Screen3>}></Route>
+            <Route path="tela4" element={<Screen4></Screen4>}></Route>
           </Route>
-          <Route path="/dashboard" element={ <DashboardPage></DashboardPage> }/>
-          <Route path="/dashboard/planos" element={ <DashboardPagePlans></DashboardPagePlans> }/>
-          <Route path="/dashboard/contato" element={ <DashboardPageContact></DashboardPageContact> }/>
-          <Route path="/dashboard/perfil" element={ <DashboardPageProfile></DashboardPageProfile> }/>
-          <Route path="/dashboard/configuracoes" element={ <DashboardPageSettings></DashboardPageSettings> }/>
+          <Route path="/painel" element={ <DashboardPage></DashboardPage> }/>
+          <Route path="/painel/planos" element={ <DashboardPagePlans></DashboardPagePlans> }/>
+          <Route path="/painel/contato" element={ <DashboardPageContact></DashboardPageContact> }/>
+          <Route path="/painel/perfil" element={ <DashboardPageProfile></DashboardPageProfile> }/>
+          <Route path="/painel/configuracoes" element={ <DashboardPageSettings></DashboardPageSettings> }/>
           <Route path="*" element={<NotFound></NotFound>}/>
         </Routes>
       </BrowserRouter>

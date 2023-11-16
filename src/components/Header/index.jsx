@@ -60,7 +60,7 @@ export default function Header({ bg, isDashboard}) {
           >
             <ul className={styles.ul__dashboard}>
               <li onClick={closeMenu}>
-                <Link to="/dashboard">
+                <Link to="/painel">
                   <svg
                     width="33"
                     height="33"
@@ -78,7 +78,7 @@ export default function Header({ bg, isDashboard}) {
               </li>
 
               <li onClick={closeMenu}>
-                <Link to="/dashboard/planos">
+                <Link to="/painel/planos">
                   <svg
                     width="33"
                     height="33"
@@ -96,7 +96,7 @@ export default function Header({ bg, isDashboard}) {
               </li>
 
               <li onClick={closeMenu}>
-                <Link to="/dashboard/contato">
+                <Link to="/painel/contato">
                   <svg
                     width="33"
                     height="33"
@@ -114,7 +114,7 @@ export default function Header({ bg, isDashboard}) {
               </li>
 
               <li onClick={closeMenu}>
-                <Link to="/dashboard/perfil">
+                <Link to="/painel/perfil">
                   <svg
                     width="33"
                     height="33"
@@ -132,7 +132,7 @@ export default function Header({ bg, isDashboard}) {
               </li>
 
               <li onClick={closeMenu}>
-                <Link to="/dashboard/configuracoes">
+                <Link to="/painel/configuracoes">
                   <svg
                     width="33"
                     height="33"
@@ -236,7 +236,7 @@ export default function Header({ bg, isDashboard}) {
                 <Link to={"/login"}>Login</Link>
               </li>
               <li>
-                <Link to={"/register/screen1"}>Cadastrar-se</Link>
+                <Link to={"/register/tela1"}>Cadastrar-se</Link>
               </li>
             </ul>
           </div>

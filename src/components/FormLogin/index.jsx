@@ -22,7 +22,7 @@ export default function FormLogin() {
             const user = userCredential.user;
             setTimeout(() => {
                 setOverlay(false);
-                navigate('/dashboard');
+                navigate('/painel');
             }, 3500); 
         } catch (error) {
             //const errorCode = error.code;
@@ -53,7 +53,7 @@ export default function FormLogin() {
         <div className={styles.login__container__main}>
           <p>
             Ainda não tem acesso?{" "}
-            <Link to={"/register/screen1"}>
+            <Link to={"/register/tela1"}>
               <span>cadastre-se</span>
             </Link>
           </p>

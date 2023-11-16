@@ -32,6 +32,12 @@
             font-weight: 700;
             line-height: normal;
             text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.5s all;
+
+            &:hover{
+                background-color: #ff4124;
+            }
         }
     }
 }

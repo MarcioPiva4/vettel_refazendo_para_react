@@ -11,7 +11,7 @@ export default function Screen1(){
     const navigate = useNavigate()
     const nextPage = (inputs) => {
         localStorage.setItem('inputValuesScreen1', JSON.stringify(inputs));
-        navigate('/register/screen2');
+        navigate('/register/tela2');
     };
 
 

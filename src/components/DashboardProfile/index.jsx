@@ -4,6 +4,7 @@ import DashboardTop from "components/DashboardTop";
 import Footer from "components/Footer";
 import Header from "components/Header";
 import ImageUserOverlay from 'components/ImageUserOverlay';
+import UserIsLogin from 'components/UserIsLogin';
 
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
@@ -184,8 +185,6 @@ export default function DashboardProfile(){
                     }
                 } catch (error) {
                 }
-            } else {
-                navigate('/');
             }
         });
 
@@ -200,9 +199,9 @@ export default function DashboardProfile(){
 
     return (
       <>
+        <UserIsLogin></UserIsLogin>
         <Header bg="#282D35" isDashboard></Header>
         <DashboardTop title="Meu perfil"></DashboardTop>
-
         { overlayImg ? <ImageUserOverlay closeOverlay={() => setOverlayImg(false)}></ImageUserOverlay> : '' }
 
         <div className={styles.user__profile}>

@@ -62,7 +62,7 @@ export default function Screen4(){
             localStorage.clear();
             setTimeout(() => {
                 setOverlay(false);
-                navigate('/dashboard');
+                navigate('/painel');
             }, 3500); 
 
         } catch (error) {
