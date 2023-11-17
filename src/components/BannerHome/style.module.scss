@@ -15,6 +15,9 @@
     @include small{
         background-image: url(../../assets/imgs/background_home_tablet.png);
     }
+    @include large{
+        background-position: center -200px;
+    }
     span{
         margin-top: 16vh;
         font-size: 24px;

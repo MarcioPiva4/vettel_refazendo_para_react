@@ -11,6 +11,7 @@
         div{
             &:nth-child(1){
                 order: 2;
+                align-self: flex-start;
             }
 
             &:nth-child(2){

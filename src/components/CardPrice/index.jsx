@@ -1,6 +1,12 @@
 import styles from './style.module.scss'
 
+import { useNavigate } from 'react-router-dom'
 export default function CardPrice({ planTitle, bgTitle, listBenefits, pricePromotion, priceDefault, priceYearly}){
+    const navigate = useNavigate()
+
+    const click = () => {
+        navigate("/register/tela1")
+    }
     return(
         <div className={styles.card}>
             <div className={styles.card__title} style={{"backgroundColor": bgTitle }}>
@@ -35,7 +41,7 @@ export default function CardPrice({ planTitle, bgTitle, listBenefits, pricePromo
                 </div>
 
                 <div className={styles.card__prices_button}>
-                    <button>Escolher</button>
+                    <button onClick={click}>Escolher</button>
                 </div>                        
             </div>
         </div>

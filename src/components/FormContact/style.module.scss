@@ -6,6 +6,10 @@
     @include small{
         padding: 0px 35px 50px 35px;
     }
+    @include large{
+        width: 60%;
+        margin: 0 auto;
+    }
     h1{
         text-align: center;
         margin-bottom: 24px;
