@@ -1,4 +1,5 @@
 @import '../../styles/variaveis';
+@import '../../styles/functions';
 
 .benefits {
     &__top {
@@ -44,14 +45,47 @@
         overflow: hidden;
         position: relative;
         background-color: $primaryRed;
+        @include large{
+            height: 200px;
+        }
         div{
             height: 1000px;
             background-color: $primaryWhite;
             position: absolute;
             width: 100%;
-            left: 55%;
+            left: 72%;
             top: -204%;
-            transform: rotate(69deg);
+            transform: rotate(72deg);
+
+            @include small{
+                height: 1000px;
+                background-color: #fff;
+                position: absolute;
+                width: 100%;
+                left: 0%;
+                top: -28%;
+                transform: rotate(81deg);
+            }
+
+            @include medium{
+                height: 1500px;
+                background-color: #fff;
+                position: absolute;
+                width: 100%;
+                left: 13%;
+                top: -122%;
+                transform: rotate(83deg);
+            }
+
+            @include large{
+                height: 2000px;
+                background-color: #fff;
+                position: absolute;
+                width: 100%;
+                left: 12%;
+                top: -90%;
+                transform: rotate(84deg);
+            }
         }
     }
 
@@ -60,6 +94,15 @@
         flex-direction: column;
         gap: 88px;
         margin-bottom: 32px;
+
+        @include small{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            text-align: center;
+            row-gap: 96px !important;
+            padding: 0 40px;
+            gap: 28px;
+        }
 
         &__content {
             display: flex;

@@ -1,7 +1,11 @@
 @import "../../styles/variaveis";
+@import '../../styles/functions';
 
 .form{
     padding-bottom: 50px;
+    @include small{
+        padding: 0px 35px 50px 35px;
+    }
     h1{
         text-align: center;
         margin-bottom: 24px;

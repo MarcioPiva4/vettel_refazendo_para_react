@@ -6,8 +6,11 @@ export default function BannerHome(){
     return (
       <>
         <section className={styles.banner__bg}>
-          <span>
+          <span className={styles.banner__bg__title__mobile}>
             Viage com <b>Segurança</b>
+          </span>
+          <span className={styles.banner__bg__title__tablet}>
+            Você busca dirigir com <br></br><b>Segurança</b> e <b>Emoção?</b>
           </span>
           <Scrolling
               activeClass="active"

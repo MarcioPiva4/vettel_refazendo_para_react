@@ -1,0 +1,21 @@
+@import '../../styles/functions';
+
+.card{
+    &__content{
+        @include small{
+            display: flex;
+            padding: 0 40px;
+            gap: 20px;
+        }
+
+        div{
+            &:nth-child(1){
+                order: 2;
+            }
+
+            &:nth-child(2){
+                order: 1;
+            }
+        }
+    }
+}

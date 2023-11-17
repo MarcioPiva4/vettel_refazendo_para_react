@@ -200,16 +200,17 @@ export default function Header({ bg, isDashboard}) {
                 <li onClick={closeMenu}>sobre nos</li>
               </Scrolling>
               <Scrolling
-                activeClass='active'
+                activeClass="active"
                 activeStyle={{color:"#E40101",textDecoration:'underline'}}
                 to="benefits"
                 spy={true}
                 smooth={true}
-                offset={-200}
+                offset={-70}
                 duration={500}
               >
-                <li onClick={closeMenu}>beneficios</li>
+                <li onClick={closeMenu}>Beneficios</li>
               </Scrolling>
+
               <Scrolling
                 activeClass="active"
                 activeStyle={{color:"#E40101",textDecoration:'underline'}}
@@ -232,6 +233,7 @@ export default function Header({ bg, isDashboard}) {
               >
                 <li onClick={closeMenu}>contato</li>
               </Scrolling>
+              
               <li>
                 <Link to={"/login"}>Login</Link>
               </li>

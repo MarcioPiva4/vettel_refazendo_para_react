@@ -1,7 +1,12 @@
 @import '../../styles/variaveis';
+@import '../../styles/functions';
 
 .assesssment__content{
     padding: 32px 16px;
+
+    @include small{
+        padding: 32px 70px;
+    }
     h1{
         color: $terciaryBlack;
         text-align: center;
