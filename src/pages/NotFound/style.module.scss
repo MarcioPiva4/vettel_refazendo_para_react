@@ -1,12 +1,19 @@
 @import '../../styles/variaveis';
+@import '../../styles/functions';
 
 .notfound{
     &__container{
-        padding: 0 16px;
+        padding: 0 16px 50px 16px;
         display: flex;
         flex-direction: column;
         margin-top: 14vh;
         gap: 16px;
+        img{
+            @include small{
+                width: 50%;
+                margin: 0 auto;
+            }
+        }
         h1{
             color: $fourthBlack;
             text-align: center;
@@ -14,6 +21,10 @@
             font-weight: 700;
             line-height: normal;
             text-transform: uppercase;
+            @include small{
+                width: 60%;
+                margin: 0 auto;
+            }
         }
         p{
             color: $paragraphGray;
@@ -21,6 +32,9 @@
             font-size: $paragraphMediumSize;
             font-weight: 500;
             line-height: normal;
+            @include small{
+                padding: 0 40px;
+            }
         }
         button{
             height: 60px;
@@ -37,6 +51,11 @@
 
             &:hover{
                 background-color: #ff4124;
+            }
+
+            @include small{
+                width: 50%;
+                margin: 0 auto;
             }
         }
     }

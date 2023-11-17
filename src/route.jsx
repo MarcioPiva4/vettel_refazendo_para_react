@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 
 import Home from './pages/Home'
 
@@ -14,11 +14,22 @@ import DashboardPage from "pages/DashboardPage";
 import DashboardPageContact from "pages/DashboardPageContact";
 import DashboardPageProfile from "pages/DashboardPageProfile";
 import DashboardPagePlans from "pages/DashboardPagePlans";
+import { useEffect } from "react";
 
 export default function App() {
+
+  const ScrollToTop = () => {
+    const { pathname } = useLocation();
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+  
+    return null;
+  };
   return (
     <div className="App">
       <BrowserRouter>
+        <ScrollToTop></ScrollToTop>
         <Routes>
           <Route index path="/" element={ <Home></Home> }/>
           <Route path="/login" element={ <Login></Login> }/>

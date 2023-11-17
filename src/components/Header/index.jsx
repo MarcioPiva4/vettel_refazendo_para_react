@@ -3,7 +3,7 @@ import styles from "./style.module.scss";
 import React, { useEffect, useState } from "react";
 
 import { Link as Scrolling} from 'react-scroll';
-export default function Header({ bg, isDashboard}) {
+export default function Header({ bg, isDashboard, isNotFound}) {
   const [openMenu, setOpenMenu] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
  
@@ -31,17 +31,33 @@ export default function Header({ bg, isDashboard}) {
     setOpenMenu(false);
   };
 
+  const [notFound, setNotFound] = useState(isNotFound)
+
+  const getLinkStyleBg = () => {
+    if (openMenu || isScrolled || notFound) {
+      return { backgroundColor: "#fff"};
+    }
+  }
+
+  const getLinkStyleColor = () => {
+    if (openMenu || isScrolled || notFound) {
+      return { color: "#fff"};
+    }
+  }
+
+
+
   return (
     <>
       {isDashboard ? (
         <header
           className={styles.header}
           style={
-            openMenu ? { backgroundColor: "#E40101" } : { backgroundColor: bg }
+            openMenu ? { backgroundColor: "#E40101"} : { backgroundColor: bg }
           }
         >
           <h1>
-            <Link to="/">Vettel</Link>
+            <Link to="/" style={isDashboard ? {color:'#fff'} : {}}>Vettel</Link>
           </h1>
           <div
             className={
@@ -51,9 +67,9 @@ export default function Header({ bg, isDashboard}) {
             }
             onClick={toggleMenu}
           >
-            <div></div>
-            <div></div>
-            <div></div>
+            <div style={isDashboard ? {backgroundColor:'#fff'} : {}}></div>
+            <div style={isDashboard ? {backgroundColor:'#fff'} : {}}></div>
+            <div style={isDashboard ? {backgroundColor:'#fff'} : {}}></div>
           </div>
           <div
             className={openMenu ? styles.menu__active : styles.menu__disabled}
@@ -155,11 +171,11 @@ export default function Header({ bg, isDashboard}) {
         <header
           className={isScrolled ? styles.header__color : styles.header}
           style={
-            openMenu ? { backgroundColor: "#E40101" } : { backgroundColor: bg }
+            openMenu ? { backgroundColor: "#E40101"  } : { backgroundColor: bg }
           }
         >
           <h1>
-            <Link to="/">Vettel</Link>
+            <Link to="/" style={getLinkStyleColor()}>Vettel</Link>
           </h1>
           <div
             className={
@@ -169,9 +185,9 @@ export default function Header({ bg, isDashboard}) {
             }
             onClick={toggleMenu}
           >
-            <div></div>
-            <div></div>
-            <div></div>
+            <div style={getLinkStyleBg()}></div>
+            <div style={getLinkStyleBg()}></div>
+            <div style={getLinkStyleBg()}></div>
           </div>
           <div
             className={openMenu ? styles.menu__active : styles.menu__disabled}

@@ -11,7 +11,7 @@ export default function NotFound(){
     }
     return(
         <>
-            <Header bg="#1A2E35"></Header>
+            <Header bg="#1A2E35" isNotFound></Header>
             <section className={styles.notfound__container}>
                 <img src={backgroundCar} alt='car'></img>
                 <h1>OPS! Não encontramos essa página</h1>
