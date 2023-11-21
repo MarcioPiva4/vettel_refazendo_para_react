@@ -1,4 +1,5 @@
 /* eslint-disable default-case */
+import BoxMessage from 'components/BoxMessage';
 import styles from './style.module.scss'
 import DashboardTop from "components/DashboardTop";
 import Footer from "components/Footer";
@@ -11,6 +12,7 @@ import { doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { app } from 'services/firebaseConfig';
+import NoScroll from 'components/NoScroll';
 
 export default function DashboardProfile(){
     const auth = getAuth();
@@ -70,6 +72,16 @@ export default function DashboardProfile(){
     //state overlay
     const [overlayImg, setOverlayImg] = useState(false)
 
+
+    const [imageProfileLoading, setImageProfileLoading] = useState(false);
+    const updateImageProfileLoading = (imageUrl) => {
+      setImageProfileLoading(imageUrl);
+  };
+
+    //state mensagem
+    const [messageBox, setMessageBox] = useState(false)
+    const [message, setMessage] = useState('')
+
     //state de disable na input
     const [editInputName, setEditInputName] = useState(true)
     const [editInputEmail, setEditInputEmail] = useState(true)
@@ -80,7 +92,7 @@ export default function DashboardProfile(){
     const [editInputSecurity, setEditInputSecurity] = useState(true)
 
 
-    const submitInput = async(campo, funcCloseIcon) => {
+    const submitInput = async(campo, funcCloseIcon, msgSucess) => {
       const db = getFirestore(app);
       const auth = getAuth(app);
       const userDocRef = doc(db, 'users', auth.currentUser.uid);
@@ -115,46 +127,47 @@ export default function DashboardProfile(){
 
       try {
         await setDoc(userDocRef, userData, { merge: true });
-        console.log('salvo');
+        setMessage(msgSucess)
+        setMessageBox(true)
     } catch (error) {
+        setMessage('Tivemos um erro ao atualizar este campo, tente novamente')
+        setMessageBox(true)
+    } finally{
+      setTimeout(() => {
+        setMessageBox(false)
+      },5000)
     }
       const closeIcon = funcCloseIcon;
     }
 
     //funcoes para enviar os campos modificados para o banco
     const submitInputName = () => {
-      submitInput('nome',editInputNameClick())
+      submitInput('nome',editInputNameClick(), 'Nome alterado com sucesso')
     }
 
     const submitInputEmail = () => {
       submitInput('email',editInputEmailClick())
     }
 
-    console.log(password, inputValuePassword)
     const submitInputPassword = () => {
-      if(inputValuePassword === password){
-        editInputPasswordClick();
-        window.alert("Não coloque a mesma senha")
-      } else {
-        submitInput('senha',editInputPasswordClick())
-        updatePasswordFunction();
-      }
+      submitInput('senha',editInputPasswordClick(), 'Senha alterada com sucesso')
+      updatePasswordFunction();
     }
 
     const submitInputNameCard = () => {
-      submitInput('nomecartao',editInputNameCardClick())
+      submitInput('nomecartao',editInputNameCardClick(), 'Nome do cartão alterado com sucesso')
     }
 
     const submitInputNumberCard = () => {
-      submitInput('numerocartao', editInputNumberCardClick())
+      submitInput('numerocartao', editInputNumberCardClick(), 'Número do cartão alterado com sucesso')
     }
 
     const submitInputExpirationDate = () => {
-      submitInput('validade', editInputExpirationDateClick())
+      submitInput('validade', editInputExpirationDateClick(), 'Data de validade do cartão alterado com sucesso')
     }
 
     const submitInputSecurity = () => {
-      submitInput('codigoseguranca', editInputSecurityClick())
+      submitInput('codigoseguranca', editInputSecurityClick(), 'Código de segurança do cartão alterado com sucesso')
     }
 
 
@@ -221,20 +234,18 @@ export default function DashboardProfile(){
     //funcao para sair do firebase auth
     const exitUser = () => {
         auth.signOut().then(() => {
-        navigate("/")
-        }).catch(() => {
-            //window.alert("Erro ao fazer logout tente novamente")
+          navigate("/")
         })
     }
 
     //funcao para alterar email do firebase
-    const updateEmailFunction = () => {
+    /*const updateEmailFunction = () => {
       updateEmail(user, 'marciopivinajunior@outlook.com').then((response) => {
         console.log(response)
       }).catch(error => console.log(error,'adasd'));
-    }
+    }*/
 
-    //funcao para alterar 
+    //funcao para alterar a senha
     const updatePasswordFunction = () => {
       updatePassword(user, inputValuePassword);
     }
@@ -243,16 +254,19 @@ export default function DashboardProfile(){
     return (
       <>
         <UserIsLogin></UserIsLogin>
+        <NoScroll></NoScroll>
         <Header bg="#282D35" isDashboard></Header>
         <DashboardTop title="Meu perfil"></DashboardTop>
-        { overlayImg ? <ImageUserOverlay closeOverlay={() => setOverlayImg(false)}></ImageUserOverlay> : '' }
+        {messageBox ? <BoxMessage message={message}></BoxMessage> : ''}
+        { overlayImg ? <><NoScroll NoScroll></NoScroll><ImageUserOverlay closeOverlay={() => setOverlayImg(false)} updateImageProfile={updateImageProfileLoading}></ImageUserOverlay></> : '' }
 
         <div className={styles.user__profile}>
           <div className={styles.user__profile__image}>
             <div>
               <figure>
-                <svg onClick={openOverlay} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill="black"/></svg>
-                <img onClick={openOverlay} alt={name} src={imageProfile}></img>
+                <svg onClick={openOverlay} width="32" height="32" style={imageProfileLoading ? {display:"none"} : {display:"block"}} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill="black"/></svg>
+                <img onClick={openOverlay} alt={name} src={imageProfile} style={imageProfileLoading ? {display:"none"} : {display:"block"}}></img>
+                {imageProfileLoading ? <span className={styles.loader}></span> : ''}
               </figure>
             </div>
             <h1>{name}</h1>
@@ -272,7 +286,7 @@ export default function DashboardProfile(){
               <input type="text" defaultValue={email}  onChange={(e) => setInputValueEmail(e.target.value)}  disabled={editInputEmail}></input>
               </div>
               <svg style={editInputEmail ? {display:'block'} : {display:'none'}} onClick={editInputEmailClick} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill="black"/></svg>
-              <div style={editInputEmail ? {display:'none'} : {display:'block'}} onClick={updateEmailFunction}> <h5>Salvar</h5></div>
+              <div style={editInputEmail ? {display:'none'} : {display:'block'}} /*onClick={updateEmailFunction}*/> <h5>Salvar</h5></div>
             </li>
             <li>
               <div>

@@ -1,9 +1,21 @@
 @import '../../styles/variaveis';
+@import '../../styles/functions';
 
 .login{
     &__container{
         width: 100%;
         padding: 95px 32px 0 32px;
+        @include small{
+            padding: 95px 132px 0 132px;
+        }
+
+        @include medium{
+            padding: 95px 162px 0 162px;
+        }
+
+        @include large{
+            padding: 95px 400px 0 400px;
+        }
         &__main{
             margin-bottom: 120px;
             margin-top: 20px;

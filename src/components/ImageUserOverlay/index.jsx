@@ -5,7 +5,7 @@ import { doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useState } from 'react';
 
-export default function ImageUserOverlay({ closeOverlay }) {
+export default function ImageUserOverlay({ closeOverlay,updateImageProfile }) {
     const [img, setImg] = useState('');
     const [overlay, setOverlay] = useState('');
 
@@ -43,8 +43,14 @@ export default function ImageUserOverlay({ closeOverlay }) {
                 await setDoc(userDocRef, userData, { merge: true });
                 console.log('URL da imagem salva no banco de dados.');
                 closeOverlayClick();
+                updateImageProfile(true);
             } catch (error) {
                 console.error('Erro ao salvar a URL no banco de dados:', error);
+                updateImageProfile(true);
+            } finally{
+                setTimeout(() => {
+                    updateImageProfile(false)
+                }, 1500)
             }
         };
 

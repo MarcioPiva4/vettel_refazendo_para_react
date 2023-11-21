@@ -15,6 +15,7 @@ import DashboardPageContact from "pages/DashboardPageContact";
 import DashboardPageProfile from "pages/DashboardPageProfile";
 import DashboardPagePlans from "pages/DashboardPagePlans";
 import { useEffect } from "react";
+import DashboardAssessment from "pages/DashboardPageAssessment";
 
 export default function App() {
 
@@ -44,6 +45,11 @@ export default function App() {
           <Route path="/painel/contato" element={ <DashboardPageContact></DashboardPageContact> }/>
           <Route path="/painel/perfil" element={ <DashboardPageProfile></DashboardPageProfile> }/>
           <Route path="/painel/configuracoes" element={ <DashboardPageSettings></DashboardPageSettings> }/>
+          <Route path="/painel/avalia-nos" element={<DashboardAssessment></DashboardAssessment>} />
+          <Route path="/painel/dispositivos-conectados" element={ <DashboardPageSettings></DashboardPageSettings> }/>
+          <Route path="/painel/condicoes-automovel" element={ <DashboardPageSettings></DashboardPageSettings> }/>
+          <Route path="/painel/dados-conducao" element={ <DashboardPageSettings></DashboardPageSettings> }/>
+          <Route path="/painel/cancelar-planos" element={ <DashboardPageSettings></DashboardPageSettings> }/>
           <Route path="*" element={<NotFound></NotFound>}/>
         </Routes>
       </BrowserRouter>
