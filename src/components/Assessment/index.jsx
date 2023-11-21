@@ -51,7 +51,7 @@ export default function Assessment(){
         <section className={styles.assesssment__content} id='assessment'>
             
             <h1>Avaliações</h1>
-            
+            {/*}
             <Swiper
             spaceBetween={50}
             slidesPerView={3}
@@ -61,6 +61,7 @@ export default function Assessment(){
                 <SwiperSlide>Slide 3</SwiperSlide>
                 <SwiperSlide>Slide 4</SwiperSlide>
             </Swiper>
+        {*/}
 
 
             <Card 

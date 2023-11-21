@@ -16,6 +16,8 @@ import DashboardPageProfile from "pages/DashboardPageProfile";
 import DashboardPagePlans from "pages/DashboardPagePlans";
 import { useEffect } from "react";
 import DashboardAssessment from "pages/DashboardPageAssessment";
+import DashboardConnectedDevices from "pages/DashboardConnectedDevices";
+import DashboardQrCode from "pages/DashboardConnectedDevices/DashboardQrCode";
 
 export default function App() {
 
@@ -46,7 +48,8 @@ export default function App() {
           <Route path="/painel/perfil" element={ <DashboardPageProfile></DashboardPageProfile> }/>
           <Route path="/painel/configuracoes" element={ <DashboardPageSettings></DashboardPageSettings> }/>
           <Route path="/painel/avalia-nos" element={<DashboardAssessment></DashboardAssessment>} />
-          <Route path="/painel/dispositivos-conectados" element={ <DashboardPageSettings></DashboardPageSettings> }/>
+          <Route path="/painel/dispositivos-conectados" element={ <DashboardConnectedDevices></DashboardConnectedDevices> }/>
+          <Route path="/painel/dispositivos-conectados/qr-code" element={ <DashboardQrCode></DashboardQrCode>}/>
           <Route path="/painel/condicoes-automovel" element={ <DashboardPageSettings></DashboardPageSettings> }/>
           <Route path="/painel/dados-conducao" element={ <DashboardPageSettings></DashboardPageSettings> }/>
           <Route path="/painel/cancelar-planos" element={ <DashboardPageSettings></DashboardPageSettings> }/>
