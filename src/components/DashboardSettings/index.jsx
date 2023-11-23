@@ -4,23 +4,26 @@ import DashboardTop from "components/DashboardTop";
 import Footer from "components/Footer";
 import Header from "components/Header";
 import UserIsLogin from 'components/UserIsLogin';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link} from "react-router-dom";
+import { ThemeContext } from "route";
+
 export default function DashboardSettings(){
 
-
     const [darkMode, setDarkMode] = useState(false);
-
     const setClickDarkMode = () => {
         setDarkMode(!darkMode)
+        toggleTheme();
     }
+
+    const { themeDark, toggleTheme } = useContext(ThemeContext);
     return (
         <>
         <Header bg='#282D35' isDashboard></Header>
         <UserIsLogin></UserIsLogin>
         <DashboardTop title='Configurações'></DashboardTop>
 
-        <div className={styles.settings__container}>
+        <div className={styles.settings__container} style={themeDark ? {backgroundColor:'#545454'} : {}}>
             <ul>
                 <Link to='/painel/dispositivos-conectados'><li><svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.66699 27.1654V24.1654H5.53366V7.83203C5.53366 7.28203 5.72949 6.8112 6.12116 6.41953C6.51283 6.02786 6.98366 5.83203 7.53366 5.83203H28.2003V7.83203H7.53366V24.1654H15.3337V27.1654H2.66699ZM18.6337 27.1654C18.2653 27.1654 17.9566 27.0154 17.7074 26.7154C17.4582 26.4154 17.3337 26.0765 17.3337 25.6987V11.132C17.3337 10.7637 17.4582 10.455 17.7074 10.2058C17.9566 9.95662 18.2653 9.83203 18.6337 9.83203H27.692C28.1198 9.83203 28.5003 9.9487 28.8337 10.182C29.167 10.4154 29.3337 10.732 29.3337 11.132V25.7078C29.3337 26.1208 29.1725 26.4669 28.8503 26.7463C28.5281 27.0257 28.1448 27.1654 27.7003 27.1654H18.6337ZM19.3337 24.1654H27.3337V11.832H19.3337V24.1654Z" fill="black"/></svg>Dispositivos Conectados</li></Link>
                 <Link to='/painel/condicoes-automovel'><li><svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><g clipPath="url(#clip0_685_2613)"><path d="M16 8.3L12.4667 4.8L13.8667 3.36667L16 5.5L21 0.5L22.4 1.9L16 8.3ZM5 32.5C4.71667 32.5 4.47917 32.4042 4.2875 32.2125C4.09583 32.0208 4 31.7833 4 31.5V20.7L6.83333 12.1667C6.94444 11.8556 7.12778 11.6111 7.38333 11.4333C7.63889 11.2556 7.93333 11.1667 8.26667 11.1667H23.7333C24.0667 11.1667 24.3611 11.2556 24.6167 11.4333C24.8722 11.6111 25.0556 11.8556 25.1667 12.1667L28 20.7V31.5C28 31.7833 27.9042 32.0208 27.7125 32.2125C27.5208 32.4042 27.2833 32.5 27 32.5H26.3C26.0111 32.5 25.7778 32.4042 25.6 32.2125C25.4222 32.0208 25.3333 31.7833 25.3333 31.5V29.7H6.66667V31.5C6.66667 31.7833 6.57083 32.0208 6.37917 32.2125C6.1875 32.4042 5.95 32.5 5.66667 32.5H5ZM6.76667 18.7H25.2333L23.4 13.1667H8.6L6.76667 18.7ZM9.5255 26.0333C10.0418 26.0333 10.4722 25.8583 10.8167 25.5083C11.1611 25.1583 11.3333 24.7333 11.3333 24.2333C11.3333 23.7148 11.1583 23.2741 10.8083 22.9111C10.4583 22.5481 10.0333 22.3667 9.53333 22.3667C9.01482 22.3667 8.57408 22.5474 8.2111 22.9088C7.84814 23.2703 7.66667 23.7091 7.66667 24.2255C7.66667 24.7418 7.84739 25.1722 8.20883 25.5167C8.57026 25.8611 9.00915 26.0333 9.5255 26.0333ZM22.5 26.0333C23.0185 26.0333 23.4593 25.8583 23.8222 25.5083C24.1852 25.1583 24.3667 24.7333 24.3667 24.2333C24.3667 23.7148 24.1859 23.2741 23.8245 22.9111C23.4631 22.5481 23.0242 22.3667 22.5078 22.3667C21.9915 22.3667 21.5611 22.5474 21.2167 22.9088C20.8722 23.2703 20.7 23.7091 20.7 24.2255C20.7 24.7418 20.875 25.1722 21.225 25.5167C21.575 25.8611 22 26.0333 22.5 26.0333ZM6 27.7H26V20.7H6V27.7Z" fill="black"/></g><defs><clipPath id="clip0_685_2613"><rect width="32" height="32" fill="white" transform="translate(0 0.5)"/></clipPath></defs></svg>Condições do automovel</li></Link>
@@ -39,6 +42,7 @@ export default function DashboardSettings(){
                 </li>
             </ul>
         </div>
+    
         <Footer></Footer>
         </>
     )

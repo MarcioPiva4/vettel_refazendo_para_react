@@ -14,13 +14,15 @@ import DashboardPage from "pages/DashboardPage";
 import DashboardPageContact from "pages/DashboardPageContact";
 import DashboardPageProfile from "pages/DashboardPageProfile";
 import DashboardPagePlans from "pages/DashboardPagePlans";
-import { useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 import DashboardAssessment from "pages/DashboardPageAssessment";
 import DashboardConnectedDevices from "pages/DashboardConnectedDevices";
 import DashboardQrCode from "pages/DashboardConnectedDevices/DashboardQrCode";
 
-export default function App() {
 
+export const ThemeContext = createContext();
+
+export default function App() {
   const ScrollToTop = () => {
     const { pathname } = useLocation();
     useEffect(() => {
@@ -29,10 +31,20 @@ export default function App() {
   
     return null;
   };
+
+
+  const [themeDark, setThemeDark] = useState(false);
+
+  const toggleTheme = () => {
+    setThemeDark(!themeDark)
+  };
+
   return (
+    
     <div className="App">
       <BrowserRouter>
         <ScrollToTop></ScrollToTop>
+        <ThemeContext.Provider value={{ themeDark, toggleTheme }}>
         <Routes>
           <Route index path="/" element={ <Home></Home> }/>
           <Route path="/login" element={ <Login></Login> }/>
@@ -55,6 +67,7 @@ export default function App() {
           <Route path="/painel/cancelar-planos" element={ <DashboardPageSettings></DashboardPageSettings> }/>
           <Route path="*" element={<NotFound></NotFound>}/>
         </Routes>
+        </ThemeContext.Provider>
       </BrowserRouter>
     </div>
   );
