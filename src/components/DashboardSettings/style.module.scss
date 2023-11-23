@@ -25,6 +25,71 @@
                 display: flex;
                 align-items: center;
                 gap: 22px;
+
+                .darkmode__active, .darkmode__disable{
+                    width: 84px;
+                    height: 31px;
+                    border-radius: 50px;
+                    position: relative;
+                    cursor: pointer;
+                    .on,.off {
+                        width: 25px;
+                        height: 25px;
+                        border-radius: 50%;
+                        position: absolute;
+                        top: 9%;
+                        transition: 1s all ease;
+                        background-color: #282d35;
+                        z-index: 2;
+                    }
+                    .off{
+                        left: 6%;
+                    }
+                    .on{
+                        left: 64%;
+                    }
+                    span{
+                        position: absolute;
+                        font-size: 14px;
+                        top: 22%;
+                        transition: 0.5s all;
+                        &:nth-child(2){
+                            left: 52%;
+                            color: #fff;
+                        }
+
+                        &:nth-child(3){
+                            left: 6%;
+                            color: #000;
+                        }
+                    }
+                    .active{
+                        opacity: 1;
+                    }
+
+                    .disable{
+                        opacity: 0;
+                    }
+                }
+
+                .darkmode__disable{
+                    background-color: #fff;
+                }
+
+                .darkmode__active{
+                    background-color: #282d35db;
+                }
+            }
+
+            .lastchild{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                div{
+                    display: flex;
+                    align-items: center;
+                    gap: 22px;
+                }
             }
         }
     }
