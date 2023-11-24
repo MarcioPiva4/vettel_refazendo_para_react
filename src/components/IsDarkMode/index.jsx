@@ -19,4 +19,8 @@ export default function IsDarkMode(){
             document.body.style.backgroundColor = "#282D35"
         } 
     })
+
+
+
+    themeDark ? document.body.style.backgroundColor = "#282D35" : document.body.style.backgroundColor = "#fff"
 }
