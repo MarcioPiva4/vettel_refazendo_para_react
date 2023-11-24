@@ -18,6 +18,10 @@ import { createContext, useEffect, useState } from "react";
 import DashboardAssessment from "pages/DashboardPageAssessment";
 import DashboardConnectedDevices from "pages/DashboardConnectedDevices";
 import DashboardQrCode from "pages/DashboardConnectedDevices/DashboardQrCode";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
+import { app } from "services/firebaseConfig";
+import IsDarkMode from "components/IsDarkMode";
 
 
 export const ThemeContext = createContext();
@@ -31,20 +35,53 @@ export default function App() {
   
     return null;
   };
-
-
-  const [themeDark, setThemeDark] = useState(false);
-
-  const toggleTheme = () => {
-    setThemeDark(!themeDark)
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const [themeDark, setThemeDark] = useState(false); 
+  const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+          const userId = user.uid;
+          const userDocRef = doc(db, 'users', userId);
+  
+          try {
+              const userDocSnapshot = await getDoc(userDocRef);
+  
+              if (userDocSnapshot.exists()) {
+                  const userData = userDocSnapshot.data();
+                  setThemeDark(userData.isdarkmode);
+              }
+          } catch (error) {
+              console.error('Error fetching user data:', error);
+          }
+      }
+  });
+  
+  const toggleTheme = async () => {
+      if (themeDark !== null) { 
+          const newTheme = !themeDark;
+          setThemeDark(newTheme);
+  
+          const userDocRef = doc(db, 'users', auth.currentUser.uid);
+          const userData = {
+              isdarkmode: newTheme,
+          };
+  
+          try {
+              await setDoc(userDocRef, userData, { merge: true });
+          } catch (error) {
+              console.error('Error updating user data:', error);
+          }
+      }
   };
-
+  console.log(themeDark)
   return (
     
     <div className="App">
       <BrowserRouter>
         <ScrollToTop></ScrollToTop>
+
         <ThemeContext.Provider value={{ themeDark, toggleTheme }}>
+        <IsDarkMode></IsDarkMode>
         <Routes>
           <Route index path="/" element={ <Home></Home> }/>
           <Route path="/login" element={ <Login></Login> }/>

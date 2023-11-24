@@ -1,7 +1,7 @@
 @import "../../styles/variaveis";
 @import "../../styles/functions";
 
-.header__color, .header {
+.header__color, .header,.header__darkMode {
     position: fixed;
     width: 100%;
     height: 12vh;
@@ -74,6 +74,7 @@
             width: 100%;
             background-color: $primaryWhite;
             animation: menuOpen 0.5s;
+            z-index: 10;
             ul{
                 display: flex;
                 align-items: center;
@@ -125,6 +126,10 @@
 
 .header__color{
     background-color: $primaryBlack !important;
+}
+
+.header__darkMode{
+    background-color: #0E0F11 !important;
 }
 
 

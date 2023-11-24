@@ -9,10 +9,11 @@ import UserIsLogin from 'components/UserIsLogin';
 
 import { getAuth, onAuthStateChanged, updateEmail, updatePassword } from 'firebase/auth';
 import { doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { app } from 'services/firebaseConfig';
 import NoScroll from 'components/NoScroll';
+import { ThemeContext } from 'route';
 
 export default function DashboardProfile(){
     const auth = getAuth();
@@ -250,6 +251,7 @@ export default function DashboardProfile(){
       updatePassword(user, inputValuePassword);
     }
 
+    const { themeDark, toggleTheme } = useContext(ThemeContext);
 
     return (
       <>
@@ -269,70 +271,70 @@ export default function DashboardProfile(){
                 {imageProfileLoading ? <span className={styles.loader}></span> : ''}
               </figure>
             </div>
-            <h1>{name}</h1>
+            <h1 style={themeDark ? {color:"#fff"} : {}}>{name}</h1>
           </div>
           <ul>
             <li>
               <div>
                 <label>Nome Completo</label>
-                <input type="text" defaultValue={name} onChange={(e) => setInputValueName(e.target.value)} disabled={editInputName}></input>
+                <input type="text" defaultValue={name} onChange={(e) => setInputValueName(e.target.value)} disabled={editInputName} style={themeDark ? {backgroundColor:'#282D35',color:'#fff'} : {}}></input>
               </div>
-              <svg style={editInputName ? {display:'block'} : {display:'none'}} onClick={editInputNameClick} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill="black"/></svg>
-              <div style={editInputName ? {display:'none'} : {display:'block'}} onClick={submitInputName}> <h5>Salvar</h5></div>
+              <svg style={editInputName ? {display:'block'} : {display:'none'}} onClick={editInputNameClick} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill={themeDark ? 'white' : 'black'}/></svg>
+              <div style={editInputName ? {display:'none'} : {display:'block'}} onClick={submitInputName} > <h5 className={themeDark && styles.darkmode}>Salvar</h5></div>
             </li>
             <li>
               <div>
               <label>Email</label>
-              <input type="text" defaultValue={email}  onChange={(e) => setInputValueEmail(e.target.value)}  disabled={editInputEmail}></input>
+              <input type="text" defaultValue={email}  onChange={(e) => setInputValueEmail(e.target.value)}  disabled={editInputEmail} style={themeDark ? {backgroundColor:'#282D35',color:'#fff'} : {}}></input>
               </div>
-              <svg style={editInputEmail ? {display:'block'} : {display:'none'}} onClick={editInputEmailClick} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill="black"/></svg>
-              <div style={editInputEmail ? {display:'none'} : {display:'block'}} /*onClick={updateEmailFunction}*/> <h5>Salvar</h5></div>
+              <svg style={editInputEmail ? {display:'block'} : {display:'none'}} onClick={editInputEmailClick} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill={themeDark ? 'white' : 'black'}/></svg>
+              <div style={editInputEmail ? {display:'none'} : {display:'block'}} /*onClick={updateEmailFunction}*/> <h5 className={themeDark && styles.darkmode}>Salvar</h5></div>
             </li>
             <li>
               <div>
               <label>Senha</label>
-              <input type={editInputPassword ? 'password' : 'text'} defaultValue={password} onChange={(e) => setInputValuePassword(e.target.value)} disabled={editInputPassword}></input>
+              <input type={editInputPassword ? 'password' : 'text'} defaultValue={password} onChange={(e) => setInputValuePassword(e.target.value)} disabled={editInputPassword} style={themeDark ? {backgroundColor:'#282D35',color:'#fff'} : {}}></input>
               </div>
-              <h5 style={editInputPassword ? {display:'block'} : {display:'none'}} onClick={editInputPasswordClick}>Alterar senha</h5>
+              <h5 style={editInputPassword ? {display:'block'} : {display:'none'}} className={themeDark && styles.darkmode} onClick={editInputPasswordClick}>Alterar senha</h5>
               <h5 style={editInputPassword ? {display:'none'} : {display:'block'}} onClick={submitInputPassword}>Salvar</h5>
             </li>
             <li>
               <div> 
               <label>Nome do cartão</label>
-              <input type="text" defaultValue={nameCard} onChange={(e) => setInputValueNameCard(e.target.value)}  disabled={editInputNameCard}></input>
+              <input type="text" defaultValue={nameCard} onChange={(e) => setInputValueNameCard(e.target.value)}  disabled={editInputNameCard} style={themeDark ? {backgroundColor:'#282D35',color:'#fff'} : {}}></input>
               </div>
-              <svg style={editInputNameCard ? {display:'block'} : {display:'none'}} onClick={editInputNameCardClick} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill="black"/></svg>
-              <div style={editInputNameCard ? {display:'none'} : {display:'block'}} onClick={submitInputNameCard}> <h5>Salvar</h5></div>
+              <svg style={editInputNameCard ? {display:'block'} : {display:'none'}} onClick={editInputNameCardClick}  width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill={themeDark ? 'white' : 'black'}/></svg>
+              <div style={editInputNameCard ? {display:'none'} : {display:'block'}} onClick={submitInputNameCard}> <h5 className={themeDark && styles.darkmode}>Salvar</h5></div>
             </li>
             <li>
               <div>
               <label>Número do cartão</label>
-              <input type="text" defaultValue={numberCard} onChange={(e) => setInputValueNumberCard(e.target.value)}  disabled={editInputNumberCard}></input>
+              <input type="text" defaultValue={numberCard} onChange={(e) => setInputValueNumberCard(e.target.value)}  disabled={editInputNumberCard} style={themeDark ? {backgroundColor:'#282D35',color:'#fff'} : {}}></input>
               </div>
-              <svg style={editInputNumberCard ? {display:'block'} : {display:'none'}} onClick={editInputNumberCardClick} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill="black"/></svg>
-              <div style={editInputNumberCard ? {display:'none'} : {display:'block'}} onClick={submitInputNumberCard}> <h5>Salvar</h5></div>
+              <svg style={editInputNumberCard ? {display:'block'} : {display:'none'}} onClick={editInputNumberCardClick} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill={themeDark ? 'white' : 'black'}/></svg>
+              <div style={editInputNumberCard ? {display:'none'} : {display:'block'}} onClick={submitInputNumberCard}> <h5 className={themeDark && styles.darkmode}>Salvar</h5></div>
             </li>
 
             <li>
               <div>
               <label>Data de validade </label>
-              <input type="text" defaultValue={expirationDate} onChange={(e) => setInputValueExpirationDate(e.target.value)} disabled={editInputExpirationDate}></input>
+              <input type="text" defaultValue={expirationDate} onChange={(e) => setInputValueExpirationDate(e.target.value)} disabled={editInputExpirationDate} style={themeDark ? {backgroundColor:'#282D35',color:'#fff'} : {}}></input>
               </div>
-              <svg style={editInputExpirationDate ? {display:'block'} : {display:'none'}} onClick={editInputExpirationDateClick} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill="black"/></svg>
-              <div style={editInputExpirationDate ? {display:'none'} : {display:'block'}} onClick={submitInputExpirationDate}> <h5>Salvar</h5></div>
+              <svg style={editInputExpirationDate ? {display:'block'} : {display:'none'}} onClick={editInputExpirationDateClick} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill={themeDark ? 'white' : 'black'}/></svg>
+              <div style={editInputExpirationDate ? {display:'none'} : {display:'block'}} onClick={submitInputExpirationDate}> <h5 className={themeDark && styles.darkmode}>Salvar</h5></div>
             </li>
 
             <li>
               <div>
               <label>Código de segurança (CVV) </label>
-              <input type="text" defaultValue={security}  onChange={(e) => setInputValueSecurity(e.target.value)}  disabled={editInputSecurity}></input>
+              <input type="text" defaultValue={security}  onChange={(e) => setInputValueSecurity(e.target.value)}  disabled={editInputSecurity} style={themeDark ? {backgroundColor:'#282D35',color:'#fff'} : {}}></input>
               </div>
-              <svg style={editInputSecurity ? {display:'block'} : {display:'none'}} onClick={editInputSecurityClick} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill="black"/></svg>
-              <div style={editInputSecurity ? {display:'none'} : {display:'block'}} onClick={submitInputSecurity}> <h5>Salvar</h5></div>
+              <svg style={editInputSecurity ? {display:'block'} : {display:'none'}} onClick={editInputSecurityClick} width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.29195 29.2745H7.97271L24.895 12.3522L23.2142 10.6715L6.29195 27.5937V29.2745ZM29.7462 10.7097L24.8568 5.82016L26.4611 4.21579C26.894 3.78287 27.4288 3.56641 28.0655 3.56641C28.7021 3.56641 29.2369 3.78287 29.6699 4.21579L31.3506 5.89656C31.7835 6.32948 32 6.86427 32 7.50092C32 8.13758 31.7835 8.67236 31.3506 9.10529L29.7462 10.7097ZM28.1419 12.314L8.8895 31.5664H4V26.6769L23.2524 7.42452L28.1419 12.314ZM24.0546 11.5118L23.2142 10.6715L24.895 12.3522L24.0546 11.5118Z" fill={themeDark ? 'white' : 'black'}/></svg>
+              <div style={editInputSecurity ? {display:'none'} : {display:'block'}} onClick={submitInputSecurity}> <h5 className={themeDark && styles.darkmode}>Salvar</h5></div>
             </li>
 
             <li>
-              <h1 onClick={exitUser}>Sair da minha conta <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><g clipPath="url(#clip0_659_4713)"><path d="M6.66667 6.66667H14.6667C15.4 6.66667 16 6.06667 16 5.33333C16 4.6 15.4 4 14.6667 4H6.66667C5.2 4 4 5.2 4 6.66667V25.3333C4 26.8 5.2 28 6.66667 28H14.6667C15.4 28 16 27.4 16 26.6667C16 25.9333 15.4 25.3333 14.6667 25.3333H6.66667V6.66667Z" fill="#333333"/><path d="M27.5333 15.5314L23.8133 11.8114C23.3867 11.3848 22.6667 11.6781 22.6667 12.2781V14.6648H13.3333C12.6 14.6648 12 15.2648 12 15.9981C12 16.7314 12.6 17.3314 13.3333 17.3314H22.6667V19.7181C22.6667 20.3181 23.3867 20.6114 23.8 20.1848L27.52 16.4648C27.7867 16.2114 27.7867 15.7848 27.5333 15.5314Z" fill="#333333"/></g><defs><clipPath id="clip0_659_4713"><rect width="32" height="32" fill="white"/></clipPath></defs></svg></h1>
+              <h1 onClick={exitUser} style={themeDark ? {color:'#fff'} : {color:'#333'}}>Sair da minha conta <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><g clipPath="url(#clip0_659_4713)"><path d="M6.66667 6.66667H14.6667C15.4 6.66667 16 6.06667 16 5.33333C16 4.6 15.4 4 14.6667 4H6.66667C5.2 4 4 5.2 4 6.66667V25.3333C4 26.8 5.2 28 6.66667 28H14.6667C15.4 28 16 27.4 16 26.6667C16 25.9333 15.4 25.3333 14.6667 25.3333H6.66667V6.66667Z" fill="#333333"/><path d="M27.5333 15.5314L23.8133 11.8114C23.3867 11.3848 22.6667 11.6781 22.6667 12.2781V14.6648H13.3333C12.6 14.6648 12 15.2648 12 15.9981C12 16.7314 12.6 17.3314 13.3333 17.3314H22.6667V19.7181C22.6667 20.3181 23.3867 20.6114 23.8 20.1848L27.52 16.4648C27.7867 16.2114 27.7867 15.7848 27.5333 15.5314Z" fill={themeDark ? 'white' : '#333'}/></g><defs><clipPath id="clip0_659_4713"><rect width="32" height="32" fill="white"/></clipPath></defs></svg></h1>
             </li>
           </ul>
         </div>

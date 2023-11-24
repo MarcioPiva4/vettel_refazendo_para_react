@@ -6,7 +6,6 @@ import FormModelRegister from 'components/FormModelRegister';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import PaymentMethods from 'components/PaymentMethods';
-
 export default function Screen2(){
 
     const navigate = useNavigate()
@@ -50,6 +49,7 @@ export default function Screen2(){
     }
 
     return(
+        <>
         <section className={styles.register__container}>
             <ArrowBack></ArrowBack>
 
@@ -78,5 +78,6 @@ export default function Screen2(){
             <PaymentMethods></PaymentMethods>
 
         </section>
+        </>
     )
 }

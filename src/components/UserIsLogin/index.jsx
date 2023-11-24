@@ -9,9 +9,4 @@ export default function UserIsLogin(){
             navigate('/');
         }
     })
-
-    return(
-        <>
-        </>
-    )
 }

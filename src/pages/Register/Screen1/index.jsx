@@ -16,11 +16,13 @@ export default function Screen1(){
 
 
     return(
+        <>
         <section className={styles.register__container}>
             <ArrowBack></ArrowBack>
             <FormModelRegister title="CRIE SUA CONTA" labels={labels} types={typesInputs} onSubmit={nextPage}>
                 Continuar
             </FormModelRegister>
         </section>
+        </>
     )
 }

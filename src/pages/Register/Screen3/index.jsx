@@ -15,11 +15,13 @@ export default function Screen3(){
     }
 
     return(
+        <>
         <section className={styles.register__container}>
             <ArrowBack></ArrowBack>
             <FormModelRegister title="Estamos quase lá!" labels={labels} types={typesInputs} onSubmit={nextPage}>
                 CONCLUIR PAGAMENTO
             </FormModelRegister>
         </section>
+        </>
     )
 }
