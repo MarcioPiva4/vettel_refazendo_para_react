@@ -73,7 +73,6 @@ export default function App() {
           }
       }
   };
-  console.log(themeDark)
   return (
     
     <div className="App">
