@@ -150,7 +150,7 @@ export default function Header({ bg, isDashboard, isNotFound}) {
                 </Link>
               </li>
 
-              {/*}<li onClick={closeMenu}>
+            <li onClick={closeMenu}>
                 <Link to="/painel/avalia-nos" style={themeDark ? {color:'#fff'} : {color:"#E40101"}}>
                   <svg
                     width="33"
@@ -166,7 +166,7 @@ export default function Header({ bg, isDashboard, isNotFound}) {
                   </svg>
                   Avalia-nos
                 </Link>
-          </li> {*/}
+          </li> 
 
               <li onClick={closeMenu}>
                 <Link to="/painel/configuracoes" style={themeDark ? {color:'#fff'} : {}}>

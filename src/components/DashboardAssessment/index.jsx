@@ -3,7 +3,7 @@
 import DashboardTop from 'components/DashboardTop';
 import Footer from 'components/Footer';
 import Header from 'components/Header';
-import { get, getDatabase, push, ref, set } from 'firebase/database';
+import {  getDatabase, off, onValue, ref, set, update } from 'firebase/database';
 import { app } from 'services/firebaseConfig';
 import Star from './Star';
 import { useState } from 'react';
@@ -39,9 +39,6 @@ import { doc, getDoc, getFirestore } from 'firebase/firestore';
       setActiveIndex((oldState) => (oldState === index ? undefined : index));
     };
 
-    const database = getDatabase();
-    const referenciaDoNo = ref(database, 'assessments');
-
 
     const [name,setName] = useState();
     const [photoProfile, setPhotoProfile] = useState();
@@ -70,37 +67,40 @@ import { doc, getDoc, getFirestore } from 'firebase/firestore';
         }
     });
 
+    const database = getDatabase();
     const user = auth.currentUser.uid
-    const assessment = {
-       [user] : [name,photoProfile,submitBdAssessment,txtAssessment],
-    };
+    const referenceNo = ref(database, `assessments/${user}`);
 
+    const userAssesment = [
+      name,
+      photoProfile,
+      txtAssessment,
+      submitBdAssessment
+    ]
+
+    const pushBD = () => {
+      const onDataChange = snapshot => {
+        const value = snapshot.val();
+        const existOnTheDB = value.assessments[user];
     
-    console.log(ref(database, '/assessments'))
-
-    const teste = async() => {
-      try{
-        (await get(ref(database, '/assessments'))).toJSON()
-      } catch{
-        
-      }
-    }
-
-    const submitData = () => {
-
-
-        push(referenciaDoNo, assessment)
-        .then(() => {
-            console.log('Dados enviados com sucesso!');
-        })
-        .catch((erro) => {
-            console.error('Erro ao enviar dados:', erro);
-        });
-    }
+        if (existOnTheDB) {
+          console.log('alterado');
+          update(referenceNo, {
+            userAssesment
+          });
+        } else {
+          set(referenceNo, {
+            userAssesment
+          });
+        }
+        off(ref(database), 'value', onDataChange);
+      };
+      onValue(ref(database), onDataChange);
+    };
+    
 
 
     return (
-
         <>
         <Header bg='#282D35' isDashboard></Header>
         <DashboardTop title='Avalia-nos'></DashboardTop>
@@ -115,7 +115,7 @@ import { doc, getDoc, getFirestore } from 'firebase/firestore';
             ))}
             <div>ESTRELAS</div>
             <textarea placeholder='Qual foi sua experiência? (OPCIONAL)' onChange={e => handleTxt(e.target.value)}></textarea>
-            <button onClick={submitData}> Enviar avaliação </button>
+            <button onClick={pushBD}> Enviar avaliação </button>
         </div>
 
         <Footer></Footer>

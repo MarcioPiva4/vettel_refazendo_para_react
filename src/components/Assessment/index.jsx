@@ -1,76 +1,63 @@
-import Card from './Card'
-import styles from './style.module.scss'
+import Card from "./Card";
+import styles from "./style.module.scss";
 
-import assessmentImg from '../../assets/imgs/assessment_home.png'
-import personImg from '../../assets/imgs/old_woman_home.jpg'
+import personImg from "../../assets/imgs/old_woman_home.jpg";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import { get, getDatabase, ref } from 'firebase/database';
-import { useEffect, useState } from 'react';
-export default function Assessment(){
-    /*const [assessmentData, setAssessmentData] = useState(null);
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { getDatabase, onValue, ref } from "firebase/database";
+import { useEffect, useState } from "react";
+export default function Assessment() {
+  const [names, setNames] = useState([]);
+  const [photoProfiles, setPhotoProfiles] = useState([]);
+  const [assessments, setAssessments] = useState([]);
+  const [txtAssessments, setTxtAssessments] = useState([]);
 
+  const database = getDatabase();
+  const referenceNo = ref(database, `assessments`);
+  const dataAssesments = () => {
+    const returnBD = (snapshot) => {
+      const values = snapshot.val();
 
-    const [name,setName] = useState('');
-    const [photoProfile, setPhotoProfile] = useState('');
-    const [assessment, setAssessment] = useState('');
-    const [txtAssessment, setTxtAssessment] = useState('');
-    useEffect(() => {
-      const loadData = async () => {
-        try {
-          const database = getDatabase();
-          const referenciaDoNo = ref(database, 'assessments');
-  
-          const snapshot = await get(referenciaDoNo);
-          const data = snapshot.val();
-          console.log('Dados recuperados:', data);
-  
-          setAssessmentData(data);
-        } catch (error) {
-          console.error('Erro ao recuperar dados:', error);
-        }
-      };
-  
-      loadData();
-    }, []);
-    if (assessmentData) {
-        // Iterar sobre as chaves do objeto assessmentData (que são os IDs dos usuários)
-        Object.keys(assessmentData).forEach(userId => {
-          // Acessar os dados de cada usuário
-          const userData = assessmentData[userId];
-          // Agora, userData contém um array com os dados do usuário
-          const [name, photoProfile, assessment, txtAssessment] = userData;
+      const arrayDatas = Object.entries(values);
+      let namesBD = [];
+      let photoProfilesBD = [];
+      let assessmentsBD = [];
+      let txtAssesmentsBD = [];
 
-        });
-    }
-
-        console.log(name)*/
-
-    return(
-        <section className={styles.assesssment__content} id='assessment'>
-            
-            <h1>Avaliações</h1>
-            {/*}
-            <Swiper
-            spaceBetween={50}
-            slidesPerView={3}
-            >
-                <SwiperSlide>Slide 1</SwiperSlide>
-                <SwiperSlide>Slide 2</SwiperSlide>
-                <SwiperSlide>Slide 3</SwiperSlide>
-                <SwiperSlide>Slide 4</SwiperSlide>
-            </Swiper>
-        {*/}
+      arrayDatas.forEach((e,i) => {
+        namesBD.push(e[1].userAssesment[0])
+        photoProfilesBD.push(e[1].userAssesment[1])
+        assessmentsBD.push(e[1].userAssesment[2])
+        txtAssesmentsBD.push(e[1].userAssesment[3])
+      });
 
 
-            <Card 
-                personName='Maria Lucia'
-                personImg={personImg}
-                asses={assessmentImg}
-            >
-            </Card>
-        
-        </section>
-    )
+      setNames([...namesBD])
+      setPhotoProfiles([...photoProfilesBD])
+      setTxtAssessments([...assessmentsBD])
+      setAssessments([...txtAssesmentsBD])
+    };
+
+    onValue(referenceNo, returnBD);
+  };
+  useEffect(() => {
+    dataAssesments();
+  }, [])
+  return (
+    <section className={styles.assesssment__content} id="assessment">
+      <h1 onClick={dataAssesments}>Avaliações</h1>
+      <Swiper spaceBetween={50} slidesPerView={3}>
+        {names.map((e, i) => (
+          <Card
+            key={i}
+            personName={names[i]}
+            personImg={photoProfiles[i]}
+            asses={assessments[i]}
+            txtAssess={txtAssessments[i]}
+          ></Card>
+        ))}
+      </Swiper>
+    </section>
+  );
 }
