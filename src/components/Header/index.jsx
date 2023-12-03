@@ -59,7 +59,7 @@ export default function Header({ bg, isDashboard, isNotFound}) {
           }
         >
           <h1>
-            <Link to="/" style={isDashboard ? {color:'#fff'} : {}}>Vettel</Link>
+            <Link to={isDashboard ? "/painel" : "/"} style={isDashboard ? {color:'#fff'} : {}}>Vettel</Link>
           </h1>
           <div
             className={

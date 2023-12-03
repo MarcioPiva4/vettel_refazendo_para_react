@@ -1,0 +1,44 @@
+.dashboard{
+    &__grid__card{
+        padding: 32px 16px;
+    }
+
+    &__container__planes{
+        margin: 25px 0;
+        background-color: #282D35;
+        padding: 32px 16px;
+        .title{
+            color: #fff;
+            margin-bottom: 25px;
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ffff;
+        }
+
+        &__button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 24px 0 0 0;
+            a{
+                width: 100%;
+                button{
+                    background-color: #fff;
+                    color: #282D35;
+                    font-size: 24px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: normal;
+                    border: none;
+                    border-radius: 50px;
+                    width: 100%;
+                    padding: 25px 0;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

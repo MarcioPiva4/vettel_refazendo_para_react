@@ -149,9 +149,12 @@ export default function DashboardAssessment() {
             Enviar avaliação
           </button>
 
+{/*}
           <div className={styles.box__thanks}>
             <h1>OBRIGADO PELA SUA AVALIAÇÃO!</h1>
           </div>
+
+            {*/}
         </div>
       )}
 

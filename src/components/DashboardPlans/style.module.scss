@@ -1,0 +1,94 @@
+.plans{
+    &__container{
+        padding: 32px 16px;
+        &__more{
+            display: flex;
+            padding: 32px;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            border-radius: 20px;
+            background: #FFF;
+            box-shadow: 8px 8px 15px 5px rgba(0, 0, 0, 0.25);
+            cursor: pointer;
+            p{
+                color: var(--Preto, #000);
+                text-align: center;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+            }
+        }
+    }
+
+    &__box{
+        position: fixed;
+        width: 100%;
+        height: 90vh;
+        background-color: #ffff;
+        top: 12%;
+        display: flex;
+        flex-direction: column;
+
+        div:nth-child(1){
+            cursor: pointer;
+            right: 8%;
+            top: 5%;
+            color: #E40101;
+            font-size: 2.5em;
+            position: absolute;
+        }
+
+        div:nth-child(2){
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+            margin: 170px auto;
+            label{
+                color: #848484;
+                font-size: 16px;
+                font-weight: 600;
+                line-height: normal;
+            }
+            input{
+                margin-bottom: 20px;
+                color: #333;
+                font-family: "Quicksand", sans-serif;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: normal;
+                padding: 8px 0;
+                border: none;
+                border-bottom: 3px solid #CACACA;
+                outline: none;
+
+                &:focus{
+                    border-color: #1BB8EA;
+                }
+            }
+            button{
+                height: 50px;
+                width: 65%;
+                margin: 0 auto;
+                background-color: #E40101;
+                border: none;
+                border-radius: 50px;
+                color: #F9F9F9;
+                text-align: center;
+                font-size: 20px;
+                font-weight: 700;
+                line-height: normal;
+                text-transform: uppercase;
+                cursor: pointer;
+                padding: 0 16px;
+                margin-top: 50px;
+            }
+            select{
+                margin-top: 20px;
+                font-size: 1em;
+                outline: none;
+            }
+        }
+    }
+}

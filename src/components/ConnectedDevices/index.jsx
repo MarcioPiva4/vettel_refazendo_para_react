@@ -3,6 +3,7 @@ import styles from './style.module.scss'
 import DashboardTop from 'components/DashboardTop'
 import Header from 'components/Header'
 import { Link } from 'react-router-dom'
+import Footer from 'components/Footer'
 
 
 export default function ConnectedDevices({ isDashboardHome }){
@@ -88,6 +89,7 @@ export default function ConnectedDevices({ isDashboardHome }){
                     </div>
                 </Link>
             </div>
+            <Footer></Footer>
         </>
     )
 }

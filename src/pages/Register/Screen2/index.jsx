@@ -10,8 +10,8 @@ export default function Screen2(){
 
     const navigate = useNavigate()
 
-    const labelsAutomovel = ["Nome do automovel", "Placa"];
-    const typesInputsAutomovel = ["text","text"];
+    const labelsAutomovel = ["Nome do automovel", "Placa", "Cor", "Ano"];
+    const typesInputsAutomovel = ["text","text","text","number"];
 
     const labelsCaminhao = ["Número de risco","Número ONU", "Nome do automovel", "Placa"]
     const typesInputsCaminhao = ["number","number","text","text"]
@@ -22,13 +22,11 @@ export default function Screen2(){
     const nextPage = (inputs) => {
         navigate('/register/tela3')
         localStorage.setItem('inputValuesScreen2', JSON.stringify(inputs));
-        //console.log(inputs, valueRadio)
     }
     useEffect(() => {
         const storedValues = localStorage.getItem('inputValues');
         if (storedValues) {
           const inputs = JSON.parse(storedValues);
-          //console.log(inputs);
         }
       }, []);
 
@@ -47,13 +45,12 @@ export default function Screen2(){
         }
         setValueRadio('Automovel')
     }
-
     return(
         <>
         <section className={styles.register__container}>
             <ArrowBack></ArrowBack>
 
-            <h1>Cadastre o automovel</h1>
+            <h1 className={styles.title}>Cadastre o automovel</h1>
 
             <p className={styles.paragraph}>Tipo de veiculo</p>
             <div className={styles.register__container__screen2__content}>

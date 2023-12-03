@@ -51,6 +51,7 @@ export default function Screen4(){
                 senha: data[3][2],
                 cpf: data[0][2],
                 telefone: data[0][3],
+                planos: {plan1:[data[1][0], data[1][1], data[1][2], data[1][3]]},
                 numerocartao: data[2][0],
                 nomecartao: data[2][1],
                 validade: data[2][2],
