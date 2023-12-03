@@ -1,0 +1,74 @@
+.assessment{
+    &__container{
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        margin: 0 auto;
+        justify-content: center;
+        align-items: center;
+
+        &__buttons{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 50px 0;
+            button{
+                width: 250px;
+                height: 50px;
+                border-radius: 50px;
+                background-color: #E40101;
+                color: #fff;
+                font-size: 1em;
+                text-transform: uppercase;
+                font-weight: bold;
+                cursor: pointer;
+            }
+        }
+
+        &__stars{
+            display: flex;
+            padding: 50px 0;
+            gap: 5px;
+            button{
+                background-color: #fff;
+            }
+        }
+
+
+        textarea{
+            width: 100%;
+            height: 100px;
+            padding: 10px 20px;
+            border: 3px solid #000;
+            resize: none;
+            border-radius: 12px;
+        }
+
+        .button__submit{
+            width: 250px;
+            height: 50px;
+            border-radius: 50px;
+            background-color: #E40101;
+            color: #fff;
+            font-size: 1em;
+            text-transform: uppercase;
+            margin: 50px 0;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .box__thanks{
+            position: fixed;
+            background-color: gray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            text-align: center;
+        }
+
+    }
+}
