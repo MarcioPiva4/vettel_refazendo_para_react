@@ -44,7 +44,7 @@ export default function QrCode(){
 
             <main>
                 <div className={styles.qrcode}>
-                    <CardDashboard svg={<QRCode value={`http://localhost:3000/login?email=${email}&password=${password}`} ></QRCode>} text={'Escaneie o código'}></CardDashboard>
+                    <CardDashboard svg={<QRCode value={`https://vettel-refazendo-para-react.vercel.app/login?email=${email}&password=${password}`} ></QRCode>} text={'Escaneie o código'}></CardDashboard>
                 </div>
             </main>
 
