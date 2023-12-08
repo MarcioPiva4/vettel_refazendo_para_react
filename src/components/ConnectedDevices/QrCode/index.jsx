@@ -9,6 +9,7 @@ import { useState } from "react";
 import { doc, getDoc, getFirestore, setDoc  } from "firebase/firestore";
 import { app } from "services/firebaseConfig";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Footer from "components/Footer";
 
 export default function QrCode(){
     const auth = getAuth();
@@ -41,9 +42,13 @@ export default function QrCode(){
             <DashboardTop title={'Conecte outro dispositivo'}></DashboardTop>
 
 
-            <div className={styles.qrcode}>
-                <CardDashboard svg={<QRCode value={`http://localhost:3000/login?email=${email}&password=${password}`} ></QRCode>} text={'Escaneie o código'}></CardDashboard>
-            </div>
+            <main>
+                <div className={styles.qrcode}>
+                    <CardDashboard svg={<QRCode value={`http://localhost:3000/login?email=${email}&password=${password}`} ></QRCode>} text={'Escaneie o código'}></CardDashboard>
+                </div>
+            </main>
+
+            <Footer></Footer>
         </>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './style.module.scss';
 
-export default function FormModelRegister({ title, subtitle, labels, types, children, onSubmit, shadow }) {
+export default function FormModelRegister({ title, subtitle, labels, types, children, onSubmit, shadow, values }) {
   const [focusedInput, setFocusedInput] = useState(null);
   const [inputValues, setInputValues] = useState(Array(labels.length).fill(''));
 
@@ -39,6 +39,7 @@ export default function FormModelRegister({ title, subtitle, labels, types, chil
               onFocus={() => handleFocus(index)}
               onBlur={handleBlur}
               onChange={(e) => handleInputChange(index, e.target.value)}
+              defaultValue={values[index]}
             ></input>
           </div>
         ))}

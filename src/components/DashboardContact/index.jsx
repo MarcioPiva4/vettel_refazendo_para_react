@@ -4,17 +4,18 @@ import FormContact from "components/FormContact";
 import Header from "components/Header";
 import UserIsLogin from "components/UserIsLogin";
 
-export default function DashboardContact(){
+export default function DashboardContact() {
+  return (
+    <>
+      <UserIsLogin></UserIsLogin>
+      <Header bg="#282D35" isDashboard></Header>
 
-    return (
-        <>
-        <UserIsLogin></UserIsLogin>
-        <Header bg='#282D35' isDashboard></Header>
+      <DashboardTop title="Contato"></DashboardTop>
 
-            <DashboardTop title='Contato'></DashboardTop>
-
-            <FormContact isDashboard></FormContact>
-        <Footer></Footer>
-        </>
-    )
+      <main>
+        <FormContact isDashboard></FormContact>
+      </main>
+      <Footer></Footer>
+    </>
+  );
 }

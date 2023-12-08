@@ -25,6 +25,7 @@ export default function DashboardSettings(){
         <UserIsLogin></UserIsLogin>
         <DashboardTop title='Configurações'></DashboardTop>
 
+        <main>
         <div className={styles.settings__container} style={themeDark ? {backgroundColor:'#0E0F11'} : {}}>
             <ul>
                 <Link to='/painel/dispositivos-conectados'><li style={themeDark ? {color:'#fff'} : {}}><svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.66699 27.1654V24.1654H5.53366V7.83203C5.53366 7.28203 5.72949 6.8112 6.12116 6.41953C6.51283 6.02786 6.98366 5.83203 7.53366 5.83203H28.2003V7.83203H7.53366V24.1654H15.3337V27.1654H2.66699ZM18.6337 27.1654C18.2653 27.1654 17.9566 27.0154 17.7074 26.7154C17.4582 26.4154 17.3337 26.0765 17.3337 25.6987V11.132C17.3337 10.7637 17.4582 10.455 17.7074 10.2058C17.9566 9.95662 18.2653 9.83203 18.6337 9.83203H27.692C28.1198 9.83203 28.5003 9.9487 28.8337 10.182C29.167 10.4154 29.3337 10.732 29.3337 11.132V25.7078C29.3337 26.1208 29.1725 26.4669 28.8503 26.7463C28.5281 27.0257 28.1448 27.1654 27.7003 27.1654H18.6337ZM19.3337 24.1654H27.3337V11.832H19.3337V24.1654Z" fill={themeDark ? 'white' : 'black'}/></svg>Dispositivos Conectados</li></Link>
@@ -60,7 +61,7 @@ export default function DashboardSettings(){
                 </li>
             </ul>
         </div>
-    
+        </main>
         <Footer></Footer>
         </>
     )

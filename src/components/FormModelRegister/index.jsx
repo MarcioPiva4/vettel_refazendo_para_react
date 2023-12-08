@@ -1,9 +1,26 @@
-import React, { useState } from 'react';
-import styles from './style.module.scss';
+import React, { useState, useEffect } from "react";
+import styles from "./style.module.scss";
 
-export default function FormModelRegister({ title, subtitle, labels, types, children, onSubmit, shadow }) {
+export default function FormModelRegister({
+  title,
+  subtitle,
+  labels,
+  types,
+  children,
+  onSubmit,
+  shadow,
+  values,
+}) {
   const [focusedInput, setFocusedInput] = useState(null);
-  const [inputValues, setInputValues] = useState(Array(labels.length).fill(''));
+  const [inputValues, setInputValues] = useState(
+    values ? values : Array(labels.length).fill("")
+  );
+
+  useEffect(() => {
+    if (values) {
+      setInputValues(values);
+    }
+  }, [values]);
 
   const handleFocus = (index) => {
     setFocusedInput(index);
@@ -26,12 +43,14 @@ export default function FormModelRegister({ title, subtitle, labels, types, chil
 
   return (
     <section className={styles.form__container}>
-      <h1 style={{'textShadow': shadow}}>{title}</h1>
+      <h1 style={{ textShadow: shadow }}>{title}</h1>
       <h3>{subtitle}</h3>
       <form className={styles.form} onSubmit={handleSubmit}>
         {labels.map((label, index) => (
           <div key={index} className={styles.form__content}>
-            <label className={focusedInput === index ? styles.focusedLabel : ''}>
+            <label
+              className={focusedInput === index ? styles.focusedLabel : ""}
+            >
               {label}
             </label>
             <input
@@ -39,10 +58,12 @@ export default function FormModelRegister({ title, subtitle, labels, types, chil
               onFocus={() => handleFocus(index)}
               onBlur={handleBlur}
               onChange={(e) => handleInputChange(index, e.target.value)}
-            ></input>
+              value={inputValues[index]} // Use 'value' aqui em vez de 'defaultValue'
+            />
           </div>
         ))}
-        <button type='submit'>{children}</button>
+
+        <button type="submit">{children}</button>
       </form>
     </section>
   );

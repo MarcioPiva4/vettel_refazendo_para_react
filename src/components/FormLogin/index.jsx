@@ -2,7 +2,7 @@ import styles from "./style.module.scss";
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import LoadingOverlay from "components/LoadingOverlay";
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 import { app } from "services/firebaseConfig";
 import FormModelLogin from "components/FormModelLogin";
 
@@ -25,7 +25,6 @@ export default function FormLogin() {
                 navigate('/painel');
             }, 3500); 
         } catch (error) {
-            //const errorCode = error.code;
         } finally {
             setTimeout(() => {
                 setOverlay(false);
@@ -36,6 +35,16 @@ export default function FormLogin() {
     const labels = ["E-mail", "Senha"];
     const typesInputs = ["email", "password"];
 
+    const [parametro1, setParametro1] = useState(null);
+    const [parametro2, setParametro2] = useState(null);
+    useEffect(() => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const param1 = urlParams.get('email');
+      const param2 = urlParams.get('password');
+
+      setParametro1(param1);
+      setParametro2(param2);
+    }, [])
     return (
       <section className={styles.login__container}>
         {overlay && <LoadingOverlay resetGif></LoadingOverlay>}
@@ -46,6 +55,7 @@ export default function FormLogin() {
           labels={labels}
           types={typesInputs}
           onSubmit={handleSubmit}
+          values={[parametro1, parametro2]}
         >
           Entrar
         </FormModelLogin>

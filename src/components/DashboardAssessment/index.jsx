@@ -108,7 +108,6 @@ export default function DashboardAssessment() {
     };
     onValue(ref(database), onDataChange);
   };
-  console.log(isAssessment)
   const navigate = useNavigate();
   const backPage = () => navigate(-1)
   const remakeAssesment = () => setIsAssessment(false)
@@ -121,6 +120,7 @@ export default function DashboardAssessment() {
     <>
       <Header bg="#282D35" isDashboard></Header>
       <DashboardTop title="Avalia-nos"></DashboardTop>
+      <main>
       {isAssessment ? (
         <div className={styles.assessment__container}>
           <h1 className={styles.title__isAssessment}>Você já nos avaliou, deseja refazer a sua avaliação?</h1>
@@ -149,14 +149,9 @@ export default function DashboardAssessment() {
             Enviar avaliação
           </button>
 
-{/*}
-          <div className={styles.box__thanks}>
-            <h1>OBRIGADO PELA SUA AVALIAÇÃO!</h1>
-          </div>
-
-            {*/}
         </div>
       )}
+      </main>
 
       <Footer></Footer>
     </>

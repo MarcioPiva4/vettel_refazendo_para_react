@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Vettel SafeDrivre
+#*Vettel SafeDrive*
+Uma empresa automobilistica, cuja função é fornecer planos de assinatura que facilitam sua vida no transito com uma segurança aumentada.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Tecnologias Utilizadas
+-React.js
+-Sass
+-FireBase
 
-In the project directory, you can run:
+## Instalação
 
-### `npm start`
+1. Clone este repositório em sua máquina local. Execute: git clone
+https://github.com/marcioP457/Vettel-Safedrive.git
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. Execute o comando 'npm install' para instalar as depêndencias.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. Execute o comando 'npm start' para iniciar o projeto.
 
-### `npm test`
+OBS: Para executar os comandos git certifique-se de ter o GIT instalado em seu computador.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Arquivos nescessários
+-Arquivo 1: Node JS.
+-Arquivo 2: NPM.
 
-### `npm run build`
+## Comandos
+-'npm install' comando para executar as dependeências.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Contribuição
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Sinta-se a vontade para contribuir com esse projeto. Você pode:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+-Reportar problemas.
+-Sugerir melhorias.
+-Enviar pull requests.
 
-### `npm run eject`
+## Links
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. [Figma/design](https://www.figma.com/file/Are3mC1nDYK7hJKiWxOPbE/Untitled?type=design&node-id=0-1&t+B0E2gbKP6zW8FUps-0)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. [Site](https://vettel-refazendo-para-react.vercel.app/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. [Repositório](https://github.com/marcioP457/Vettel-SafedDrive)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Autores e Contribuições
+-[Márcio Piva Junior](https://github.com/marcioP457) - Desenvolvimento
+-[Vinicius Tavares Mota](https://github.com/viniciustmota) - Design
+-[Erick Sossai Rino](https://github.com/ErickRino) - Plano de Marketing
