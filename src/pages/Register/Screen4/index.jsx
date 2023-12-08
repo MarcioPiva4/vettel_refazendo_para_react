@@ -56,6 +56,7 @@ export default function Screen4() {
               ano: data[1][1],
               placa: data[1][2],
               cor: data[1][3],
+              foto: "https://garagem360.com.br/wp-content/uploads/2021/10/20190917_02_23.jpg"
             }
           ],
         },

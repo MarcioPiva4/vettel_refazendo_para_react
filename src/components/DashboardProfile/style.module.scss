@@ -1,5 +1,10 @@
 @import '../../styles/functions';
 
+.responsive__main{
+    @include medium{
+        padding: 0 300px;
+    }
+}
 .user{
     &__profile{
         padding: 32px 16px;

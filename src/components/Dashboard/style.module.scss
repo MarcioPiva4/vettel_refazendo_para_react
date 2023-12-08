@@ -8,6 +8,10 @@
             grid-template-columns: 1fr 1fr;
             gap: 32px;
 
+            a{
+                text-decoration: none;
+                color: #000;
+            }
             div{
                 &:nth-child(2){
                     grid-row: 2;

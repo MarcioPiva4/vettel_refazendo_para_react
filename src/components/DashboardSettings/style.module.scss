@@ -2,7 +2,7 @@
 @import '../../styles/functions';
 
 
-main{
+.responsive__main{
     @include medium{
         padding: 0 300px;
     }

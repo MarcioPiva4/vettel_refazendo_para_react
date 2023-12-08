@@ -3,7 +3,7 @@ import styles from "./style.module.scss";
 import React, { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from 'react';
 import { ThemeContext } from 'route';
 import Header from "components/Header";
@@ -97,7 +97,9 @@ export default function Dashboard() {
           }
         ></CardDashboard>
 
-        <ConnectedDevices isDashboardHome></ConnectedDevices>
+        <Link to={'/painel/dispositivos-conectados'}>
+          <ConnectedDevices isDashboardHome></ConnectedDevices>
+        </Link>
       </section>
       <MyPlanes></MyPlanes>
       <Footer />

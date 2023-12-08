@@ -262,7 +262,7 @@ export default function DashboardProfile(){
         {messageBox ? <BoxMessage message={message}></BoxMessage> : ''}
         { overlayImg ? <><NoScroll NoScroll></NoScroll><ImageUserOverlay closeOverlay={() => setOverlayImg(false)} updateImageProfile={updateImageProfileLoading}></ImageUserOverlay></> : '' }
 
-        <main>
+        <main className={styles.responsive__main}>
           <div className={styles.user__profile}>
             <div className={styles.user__profile__image}>
               <div>
