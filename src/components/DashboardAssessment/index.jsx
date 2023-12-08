@@ -8,11 +8,14 @@ import { app } from "services/firebaseConfig";
 import Star from "./Star";
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useContext } from 'react';
+import { ThemeContext } from 'route';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 import styles from "./style.module.scss";
 import { useNavigate } from "react-router-dom";
 export default function DashboardAssessment() {
+  const { themeDark, toggleTheme } = useContext(ThemeContext);
   const items = [...new Array(5).keys()];
   const [activeIndex, setActiveIndex] = useState(null);
   let submitBdAssessment = 0;
@@ -123,7 +126,7 @@ export default function DashboardAssessment() {
       <main>
       {isAssessment ? (
         <div className={styles.assessment__container}>
-          <h1 className={styles.title__isAssessment}>Você já nos avaliou, deseja refazer a sua avaliação?</h1>
+          <h1 className={styles.title__isAssessment} style={themeDark ? {color:"#fff"} : {}}>Você já nos avaliou, deseja refazer a sua avaliação?</h1>
           <div className={styles.assessment__container__buttons}>
             <button onClick={remakeAssesment}>Refazer</button>
             <button onClick={backPage}>Voltar</button>
@@ -131,7 +134,7 @@ export default function DashboardAssessment() {
         </div>
       ) : (
         <div className={styles.assessment__container}>
-          <h1>Avalie nossa plataforma abaixo:</h1>
+          <h1 style={themeDark ? {color:"#fff"} : {}}>Avalie nossa plataforma abaixo:</h1>
           <div className={styles.assessment__container__stars}>
             {items.map((index) => (
               <Star
@@ -144,6 +147,7 @@ export default function DashboardAssessment() {
           <textarea
             placeholder="Qual foi sua experiência?"
             onChange={(e) => handleTxt(e.target.value)}
+            style={themeDark ? {color:"#fff", backgroundColor:"rgb(40, 45, 53)", borderColor:"#fff"} : {}}
           ></textarea>
           <button onClick={pushBD} className={styles.button__submit}>
             Enviar avaliação

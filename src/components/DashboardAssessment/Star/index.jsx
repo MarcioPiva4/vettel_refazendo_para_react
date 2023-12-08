@@ -1,6 +1,9 @@
+import { useContext } from 'react';
+import { ThemeContext } from 'route';
 export default function Star({isActive, onClick}){
+    const { themeDark, toggleTheme } = useContext(ThemeContext);
     return(
-        <button onClick={onClick}>
+        <button onClick={onClick} style={themeDark ? {backgroundColor:"rgb(40, 45, 53)"} : {}}>
             <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 576 512"

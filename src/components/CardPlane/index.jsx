@@ -4,8 +4,10 @@ import React, { useState } from 'react';
 import styles from './style.module.scss';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
-
+import { useContext } from 'react';
+import { ThemeContext } from 'route';
 export default function CardPlane({ src, title, moreInformations }) {
+  const { themeDark, toggleTheme } = useContext(ThemeContext);
   const [img, setImg] = useState(null);
 
   const handleImg = (e) => {
@@ -44,16 +46,14 @@ export default function CardPlane({ src, title, moreInformations }) {
   };
 
   return (
-    <div className={styles.plane__container}>
+    <div className={styles.plane__container} style={themeDark ? {backgroundColor:"#282D35"} : {}}>
       <figure>
         <img src={src} alt={title}></img>
       </figure>
-      <input type="file" onChange={(e) => handleImg(e)} />
-      <button onClick={savePhotoUser}>Salvar Foto</button>
-      <h1>{title}</h1>
+      <h1 style={themeDark ? {color:"#fff"} : {}}>{title}</h1>
       <ul>
         {moreInformations.map((e, i) => (
-          <li key={i}>{e}</li>
+          <li key={i} style={themeDark ? {color:"#fff"} : {}}>{e}</li>
         ))}
       </ul>
     </div>

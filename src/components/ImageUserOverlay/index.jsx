@@ -88,7 +88,7 @@ export default function ImageUserOverlay({ closeOverlay,updateImageProfile }) {
                 <input type="file" onChange={(e) => handleImg(e)} />
                 <div>
                     <button type="submit" onClick={savePhotoUser}>
-                        Enviar foto?
+                        Salvar
                     </button>
                     <button onClick={closeOverlayClick}> SAIR </button>
                 </div>

@@ -1,8 +1,20 @@
 @import '../../styles/variaveis';
+@import '../../styles/functions';
 
 .register{
     &__container{
         padding: 30px 32px 50px 32px;
+        @include small{
+            padding: 95px 132px 0 132px;
+        }
+
+        @include medium{
+            padding: 95px 162px 0 162px;
+        }
+
+        @include large{
+            padding: 95px 400px 0 400px;
+        }
 
 
         .title{

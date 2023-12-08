@@ -4,10 +4,12 @@ import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { app } from 'services/firebaseConfig';
 import CardPlane from 'components/CardPlane';
-
+import { useContext } from 'react';
+import { ThemeContext } from 'route';
 import car from "../../assets/imgs/ford-mustang-gt350r-16 1.png";
 import { Link } from 'react-router-dom';
 export default function MyPlanes({ isOtherPage }) {
+  const { themeDark, toggleTheme } = useContext(ThemeContext);
   const [nameCar, setNameCar] = useState("");
   const [plate, setPlate] = useState("");
   const [year, setYear] = useState("");
@@ -62,7 +64,7 @@ export default function MyPlanes({ isOtherPage }) {
           ))}
         </div>
       ) : (
-        <div className={styles.dashboard__container__planes}>
+        <div className={styles.dashboard__container__planes} style={themeDark ? {backgroundColor:"#0E0F11"} : {}}>
           <h1 className={styles.title}>Meus planos</h1>
           <CardPlane
             src={car}
@@ -76,7 +78,7 @@ export default function MyPlanes({ isOtherPage }) {
           ></CardPlane>
           <div className={styles.dashboard__container__planes__button}>
             <Link to={"/painel/planos"}>
-              <button>Ver meus planos</button>
+              <button style={themeDark ? {backgroundColor:"#282D35", color:"#fff"} : {}}>Ver meus planos</button>
             </Link>
           </div>
         </div>

@@ -1,5 +1,12 @@
 @import '../../styles/variaveis';
+@import '../../styles/functions';
 
+
+main{
+    @include medium{
+        padding: 0 300px;
+    }
+}
 .settings{
     &__container{
         width: 90%;

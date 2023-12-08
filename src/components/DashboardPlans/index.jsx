@@ -5,7 +5,8 @@ import MyPlanes from "components/MyPlanes";
 import UserIsLogin from "components/UserIsLogin";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-
+import { useContext } from 'react';
+import { ThemeContext } from 'route';
 import styles from "./style.module.scss";
 import { useEffect, useState } from "react";
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
@@ -13,7 +14,7 @@ import { app } from "services/firebaseConfig";
 export default function DashboardPlans() {
   const navigation = useNavigate();
   const auth = getAuth();
-
+  const { themeDark, toggleTheme } = useContext(ThemeContext);
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
       navigation("/");
@@ -118,7 +119,7 @@ export default function DashboardPlans() {
 
       <main>
         <div className={styles.plans__container} onClick={openBox}>
-          <div className={styles.plans__container__more}>
+          <div className={styles.plans__container__more} style={themeDark ? {backgroundColor:"#0E0F11"} : {}}>
             <svg
               width="56"
               height="56"
@@ -131,7 +132,7 @@ export default function DashboardPlans() {
                 fill="#E40101"
               />
             </svg>
-            <p>Adicionar novo plano</p>
+            <p style={themeDark ? {color:"#fff"} : {}}>Adicionar novo plano</p>
           </div>
         </div>
 

@@ -1,5 +1,21 @@
+@import '../../styles/functions';
+
 .dashboard{
     &__container{
         padding: 16px;
+        @include medium{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+
+            div{
+                &:nth-child(2){
+                    grid-row: 2;
+                }
+                &:nth-child(3){
+                    grid-row: 2;
+                }
+            }
+        }
     }
 }
