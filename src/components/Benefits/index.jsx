@@ -84,11 +84,6 @@ export default function Benefits(){
                 {listBenefitsPrimary.map((e,i) => <div className={styles.benefits__top__content} key={i}>{e}</div>)}
             </div>
 
-            <div className={styles.benefits__bg__transition}>
-                <div></div>
-                <div></div>
-            </div>
-
             <div className={styles.benefits__bottom} id='benefits'>
                 {listBenefitsSecondary.map((e,i) => <div className={styles.benefits__bottom__content} key={i}>{e}</div>)}
             </div>
